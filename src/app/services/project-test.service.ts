@@ -45,24 +45,28 @@ export class ProjectTestService {
   ];
   tasksList: Tasks[] = [
     {
+      title: 'خرید سیم کارت',
       taskKey: 'simbuy123',
-      actor: 'Mohammad reza',
-      describtion: 'در اسرع وقت انجام میدم ببخشید دیر شده',
+      actor: 'دفتر بیمه ایران',
+      describtion: 'به زودی مبلغ پیش پرداخت واریز میشه',
     },
     {
+      title: 'پخش سیم کارت',
       taskKey: 'simDis123',
-      actor: 'Mohammad reza',
-      describtion: 'در اسرع وقت انجام میدم ببخشید دیر شده',
+      actor: 'نماینده ترکیه',
+      describtion: 'مشکل در اخذ جواز ',
     },
     {
+      title: 'جلسه با اعضای تیم',
       taskKey: 'simDiswweS123',
-      actor: 'Mohammad reza',
-      describtion: 'در اسرع وقت انجام میدم ببخشید دیر شده',
+      actor: 'معاونت نیروی انسانی',
+      describtion: 'اطلاع رسانی شده',
     },
     {
+      title: 'جلسه با ذی نفعان پروژه',
       taskKey: 'siersdSs123',
-      actor: 'Mohammad reza',
-      describtion: 'در اسرع وقت انجام میدم ببخشید دیر شده',
+      actor: 'دکتر کلهر',
+      describtion: 'منتظر جواب بقیه هستم',
     },
   ];
   getProjectsList(): Observable<Projects[]> {
