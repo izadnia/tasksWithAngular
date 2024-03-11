@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { Projects } from '../models/Projects';
 
 @Injectable({
@@ -42,8 +42,17 @@ export class ProjectTestService {
   getProjectsList(): Observable<Projects[]> {
     return of(this.projectsList);
   }
-  setNewProject(data: Projects): Observable<Projects[]> {
+  setNewProject(data: Projects): Observable<any> {
+    const lastId = this.projectsList.length + 1;
+    data.id = lastId;
+    let key = '';
+    const characters =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (let i = 0; i < 6; i++) {
+      key += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    data.taskKey = key;
     this.projectsList.push(data);
-    return of(this.projectsList);
+    return of(data);
   }
 }

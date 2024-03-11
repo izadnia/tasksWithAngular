@@ -16,7 +16,10 @@ export class ListsHandlersComponent {
     // Assume all incomeList have the same keys
     return Object.keys(this.incomeList[0]);
   }
-  formatDate(date: number | null): any {
-    return date;
+  formatDate(date: number | null): Date | null {
+    if (date === null) {
+      return null;
+    }
+    return new Date(date);
   }
 }

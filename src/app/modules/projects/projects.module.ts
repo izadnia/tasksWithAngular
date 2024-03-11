@@ -5,15 +5,20 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { SingleProjectComponent } from './components/single-project/single-project.component';
 import { PostProjectComponent } from './components/post-project/post-project.component';
 import { ListsHandlersComponent } from './components/lists-handlers/lists-handlers.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     ProjectsComponent,
     SingleProjectComponent,
     PostProjectComponent,
-ListsHandlersComponent
-    
+    ListsHandlersComponent,
   ],
-  imports: [CommonModule, ProjectsRoutingModule,],
+  imports: [
+    CommonModule,
+    ProjectsRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class ProjectsModule {}
