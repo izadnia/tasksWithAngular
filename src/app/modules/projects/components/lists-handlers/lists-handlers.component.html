@@ -20,7 +20,7 @@
           <ng-container
             *ngIf="key === 'initDate' || key === 'finishDate'; else defaultCell"
           >
-            {{ formatDate(item[key]) }}
+            {{ item[key] | date:'mediumDate' }}
           </ng-container>
           <ng-template #defaultCell>
             {{ item[key] }}
