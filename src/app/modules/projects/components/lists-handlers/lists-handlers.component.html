@@ -13,7 +13,7 @@
 
     <tbody>
     <ng-container *ngFor="let item of incomeList">
-      <tr [routerLink]="['/tasks/',item.taskKey]" routerLinkActive="router-link-active" >
+      <tr class=" border cursor-pointer" [routerLink]="['/tasks/',item.taskKey]" routerLinkActive="router-link-active" >
         <td
           *ngFor="let key of getColumnKeys()"
           class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
