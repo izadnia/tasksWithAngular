@@ -20,10 +20,26 @@
           <ng-container
             *ngIf="key === 'initDate' || key === 'finishDate'; else defaultCell"
           >
-            {{ item[key] | date:'mediumDate' }}
+            {{ item[key] | date : "mediumDate" }}
           </ng-container>
           <ng-template #defaultCell>
-            {{ item[key] }}
+            <ng-container *ngIf="key == 'taskKey'; else elseTemplate2">
+              <button
+                class="m-2 p-2 text-cyan-700 border border-cyan-700 rounded-md"
+                [routerLink]="['/tasks/edit/', item.taskKey]"
+                routerLinkActive="router-link-active"
+              >
+                ویرایش
+              </button>
+            </ng-container>
+            <ng-template #elseTemplate2>
+              <div
+                class=" cursor-pointer"
+                [routerLink]="['/tasks/', item.taskKey]"
+              >
+                {{ item[key] }}
+              </div>
+            </ng-template>
           </ng-template>
         </td>
       </tr>
