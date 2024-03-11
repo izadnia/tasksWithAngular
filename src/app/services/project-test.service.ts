@@ -10,7 +10,7 @@ export class ProjectTestService {
   selectedProject: any;
   selectedTask: any;
 
-  getprojectDetail(taskKey: string) {
+  getprojectDetail(taskKey: string) : Observable<any> {
     this.selectedProject = this.projectsList.filter(
       (m) => m.taskKey == taskKey
     )[0];
