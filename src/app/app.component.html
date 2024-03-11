@@ -1,11 +1,6 @@
-<h1 class="max-w-screen-xl m-auto">
+<div class="max-w-screen-xl m-auto">
   <app-header></app-header>
-  <router-outlet></router-outlet>
-  <app-lists-handlers
-    [incomeList]="[
-      { id:0, name: 'John', age: 30 },
-      { id:0, name: 'Jane', age: 25 },
-      { id:0, name: 'Alice', age: 35 }
-    ]"
-  ></app-lists-handlers>
-</h1>
+  <div dir="rtl">
+    <router-outlet></router-outlet>
+  </div>
+</div>

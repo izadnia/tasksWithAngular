@@ -7,26 +7,11 @@ import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ListsHandlersComponent } from './components/lists-handlers/lists-handlers.component';
-
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    HeaderComponent,
-    FooterComponent,
-    ListsHandlersComponent,
-    
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    CommonModule,
-    FormsModule,
-
-  ],
+  declarations: [AppComponent, HomeComponent, HeaderComponent, FooterComponent],
+  imports: [BrowserModule, AppRoutingModule, CommonModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
