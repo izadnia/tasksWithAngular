@@ -7,6 +7,18 @@ import { Tasks } from '../models/Tasks';
   providedIn: 'root',
 })
 export class ProjectTestService {
+  selectedProject: any;
+  selectedTask: any;
+
+  getprojectDetail(taskKey: string) {
+    this.selectedProject = this.projectsList.filter(
+      (m) => m.taskKey == taskKey
+    )[0];
+    this.selectedTask = this.tasksList.filter((m) => m.taskKey == taskKey);
+    let array: any[] = [];
+    array.push(this.selectedProject, this.selectedTask);
+    return of(array);
+  }
   constructor() {}
 
   projectsList: Projects[] = [
