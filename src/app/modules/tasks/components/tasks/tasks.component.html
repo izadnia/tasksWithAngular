@@ -1,3 +1,13 @@
-<p>tasks works!</p>
-
-
+<div>
+    <h1 class="m-2 p-2 text-3xl">لیست تسک های بچه ها</h1>
+  
+    <button
+      class="m-2 p-2 text-cyan-700 border border-cyan-700 rounded-md"
+      [routerLink]="['new-project']"
+      routerLinkActive="router-link-active"
+    >
+      ایجاد پروژه جدید
+    </button>
+    <app-lists-handlers [incomeList]="taskList"></app-lists-handlers>
+  </div>
+  

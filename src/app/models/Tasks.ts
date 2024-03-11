@@ -1,8 +1,6 @@
 export class Tasks {
-    id: number = 0;
-    title: string = '';
     taskKey: string = '';
+    actor : string = '';
     describtion: string = '';
-    finish : boolean = false;
   }
   

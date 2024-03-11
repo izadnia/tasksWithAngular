@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
 import { Projects } from '../models/Projects';
+import { Tasks } from '../models/Tasks';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class ProjectTestService {
       initDate: 184657755351,
       finishDate: 194657755351,
       taskKey: 'simbuy123',
-      finish : false,
+      finish: false,
     },
     {
       id: 2,
@@ -23,7 +24,7 @@ export class ProjectTestService {
       initDate: 184657755351,
       finishDate: 194657755351,
       taskKey: 'simDis123',
-      finish : false,
+      finish: false,
     },
     {
       id: 3,
@@ -31,7 +32,7 @@ export class ProjectTestService {
       initDate: 184657755351,
       finishDate: 194657755351,
       taskKey: 'simDiswweS123',
-      finish : false,
+      finish: false,
     },
     {
       id: 4,
@@ -39,10 +40,31 @@ export class ProjectTestService {
       initDate: 184657755351,
       finishDate: 194657755351,
       taskKey: 'siersdSs123',
-      finish : false,
+      finish: false,
     },
   ];
-
+  tasksList: Tasks[] = [
+    {
+      taskKey: 'simbuy123',
+      actor: 'Mohammad reza',
+      describtion: 'در اسرع وقت انجام میدم ببخشید دیر شده',
+    },
+    {
+      taskKey: 'simDis123',
+      actor: 'Mohammad reza',
+      describtion: 'در اسرع وقت انجام میدم ببخشید دیر شده',
+    },
+    {
+      taskKey: 'simDiswweS123',
+      actor: 'Mohammad reza',
+      describtion: 'در اسرع وقت انجام میدم ببخشید دیر شده',
+    },
+    {
+      taskKey: 'siersdSs123',
+      actor: 'Mohammad reza',
+      describtion: 'در اسرع وقت انجام میدم ببخشید دیر شده',
+    },
+  ];
   getProjectsList(): Observable<Projects[]> {
     return of(this.projectsList);
   }
@@ -56,8 +78,12 @@ export class ProjectTestService {
       key += characters.charAt(Math.floor(Math.random() * characters.length));
     }
     data.taskKey = key;
-    data.finish = false
+    data.finish = false;
     this.projectsList.push(data);
     return of(data);
+  }
+
+  getTaskList(): Observable<Tasks[]> {
+    return of(this.tasksList);
   }
 }
