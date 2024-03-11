@@ -23,9 +23,27 @@ export class ProjectTestService {
       finishDate: 194657755351,
       taskKey: 'simDis123',
     },
+    {
+      id: 3,
+      title: 'جلسه با اعضای تیم',
+      initDate: 184657755351,
+      finishDate: 194657755351,
+      taskKey: 'simDiswweS123',
+    },
+    {
+      id: 4,
+      title: 'جلسه با ذی نفعان پروژه',
+      initDate: 184657755351,
+      finishDate: 194657755351,
+      taskKey: 'siersdSs123',
+    },
   ];
 
-  getProjectsList() : Observable<Projects[]>{
-    return of(this.projectsList)
+  getProjectsList(): Observable<Projects[]> {
+    return of(this.projectsList);
+  }
+  setNewProject(data: Projects): Observable<Projects[]> {
+    this.projectsList.push(data);
+    return of(this.projectsList);
   }
 }

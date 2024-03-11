@@ -1,7 +1,38 @@
 <div>
-  <h1>لیست پروژه ها</h1>
+  <h1 class="m-2 p-2 text-3xl">لیست پروژه ها</h1>
 
-  <app-lists-handlers
-    [incomeList]="projectList"
-  ></app-lists-handlers>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <button
+    class="m-2 p-2 text-cyan-900"
+    [routerLink]="['new-project']"
+    routerLinkActive="router-link-active"
+  >
+    ایجاد پروژه جدید
+  </button>
+  <app-lists-handlers [incomeList]="projectList"></app-lists-handlers>
 </div>
