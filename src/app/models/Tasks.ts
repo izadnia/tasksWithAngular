@@ -3,5 +3,6 @@ export class Tasks {
     title: string = '';
     taskKey: string = '';
     describtion: string = '';
+    finish : boolean = false;
   }
   

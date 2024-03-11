@@ -4,4 +4,5 @@ export class Projects {
   initDate: number = 0;
   finishDate: number = 0;
   taskKey: string = '';
+  finish : boolean = false;
 }

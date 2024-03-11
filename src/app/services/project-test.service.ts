@@ -15,6 +15,7 @@ export class ProjectTestService {
       initDate: 184657755351,
       finishDate: 194657755351,
       taskKey: 'simbuy123',
+      finish : false,
     },
     {
       id: 2,
@@ -22,6 +23,7 @@ export class ProjectTestService {
       initDate: 184657755351,
       finishDate: 194657755351,
       taskKey: 'simDis123',
+      finish : false,
     },
     {
       id: 3,
@@ -29,6 +31,7 @@ export class ProjectTestService {
       initDate: 184657755351,
       finishDate: 194657755351,
       taskKey: 'simDiswweS123',
+      finish : false,
     },
     {
       id: 4,
@@ -36,6 +39,7 @@ export class ProjectTestService {
       initDate: 184657755351,
       finishDate: 194657755351,
       taskKey: 'siersdSs123',
+      finish : false,
     },
   ];
 
