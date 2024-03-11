@@ -8,6 +8,7 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [AppComponent, HomeComponent, HeaderComponent, FooterComponent],
   imports: [BrowserModule, AppRoutingModule, CommonModule, FormsModule],

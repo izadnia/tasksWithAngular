@@ -1,0 +1,32 @@
+<div class="block w-full overflow-x-auto">
+  <table class="items-center bg-transparent w-full border-collapse">
+    <thead>
+      <tr>
+        <th
+          *ngFor="let key of getColumnKeys()"
+          class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-right"
+        >
+          {{ key }}
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let item of incomeList">
+        <td
+          *ngFor="let key of getColumnKeys()"
+          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+          <ng-container
+            *ngIf="key === 'initDate' || key === 'finishDate'; else defaultCell"
+          >
+            {{ formatDate(item[key]) }}
+          </ng-container>
+          <ng-template #defaultCell>
+            {{ item[key] }}
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
