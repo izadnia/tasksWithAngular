@@ -56,6 +56,7 @@ export class ProjectTestService {
       key += characters.charAt(Math.floor(Math.random() * characters.length));
     }
     data.taskKey = key;
+    data.finish = false
     this.projectsList.push(data);
     return of(data);
   }
