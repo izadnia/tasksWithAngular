@@ -1,1 +1,27 @@
-<p>home works!</p>
+<div>
+    <div class="mx-2 p-2">
+        <h1 class="m-2 p-2 text-2xl font-bold">صفحه اصلی</h1>
+        <p class="m-2 p-2">این برنامه برای تعریف و کنترل پروژ ها</p>
+        <p class="m-2 p-2">و همچنین تعریف و کنترل اقدامات مربوط به پروژه ها ساخته شده</p>
+        <p class="m-2 p-2">از سرویس فیک برای این اپ استفاده شده</p>
+        <p class="m-2 p-2">از پایپ تاریخ فارسی برای برگردان فارسی تاریخ در بعضی قسمت ها استفاده شده</p>
+        <p class="m-2 p-2">ماژول های پروژه ها و تسک ها به صورت Lazy louding لود آدرس دهی شده اند</p>
+        <p class="m-2 p-2">این برنامه هنوز کامل نشده و کم کم در حال تکمیل است</p>
+    </div>
+    <div class="mx-2 p-2">
+        <button
+        class="mx-4 p-2 text-cyan-700 border border-cyan-700 rounded-md hover:bg-cyan-700 hover:text-white"
+        [routerLink]="['/projects']"
+        routerLinkActive="router-link-active"
+        >
+        لیست پروژه ها
+         </button>
+        <button
+            class="mx-4 p-2 text-cyan-700 border border-cyan-700 rounded-md hover:bg-cyan-700 hover:text-white"
+            [routerLink]="['/tasks']"
+            routerLinkActive="router-link-active"
+        >
+            لیست تسک ها
+        </button>
+    </div>
+</div>
