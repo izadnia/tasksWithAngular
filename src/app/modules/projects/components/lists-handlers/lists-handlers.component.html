@@ -15,28 +15,28 @@
     <tbody>
       <ng-container *ngFor="let item of incomeList">
         <tr
-          class="border "
-          routerLinkActive="router-link-active"
+          class="border hover:bg-fuchsia-100"
+          routerLinkActive="router-link-active "
         >
           <td *ngFor="let key of getColumnKeys()"
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
           >
             <ng-container
               *ngIf="key === 'initDate' || key === 'finishDate';else elseOfDate">
-              {{ item[key] | date : "mediumDate" }}
+              {{ item[key] | persianDate }}
             </ng-container>
             <ng-template  #elseOfDate>
               <ng-container *ngIf="key === 'taskKey'; else elseOfTaskKey">
                 <div>
                   <button
-                  class="mx-1 p-2 text-cyan-700 border border-cyan-700 rounded-md"
+                  class="mx-1 p-2 text-cyan-700 border border-cyan-700 rounded-md hover:bg-cyan-700 hover:text-white"
                   [routerLink]="['/projects/edit/',item[key]]"                
                   routerLinkActive="router-link-active"
                 >
                   ویرایش
                 </button>
                 <button
-                class="mx-1 p-2 text-red-700 border border-red-700 rounded-md"
+                class="mx-1 p-2 text-red-700 border border-red-700 rounded-md hover:bg-red-700 hover:text-white"
                 (click)="deleteProject(item[key])"
                 routerLinkActive="router-link-active"
               >

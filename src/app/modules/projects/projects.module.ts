@@ -6,6 +6,7 @@ import { SingleProjectComponent } from './components/single-project/single-proje
 import { PostProjectComponent } from './components/post-project/post-project.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListsHandlersComponent } from './components/lists-handlers/lists-handlers.component';
+import { PersianDatePipe } from './pipes/persian-date.pipe';
 
 @NgModule({
   declarations: [
@@ -13,12 +14,14 @@ import { ListsHandlersComponent } from './components/lists-handlers/lists-handle
     SingleProjectComponent,
     PostProjectComponent,
     ListsHandlersComponent,
+    PersianDatePipe
   ],
   imports: [
     CommonModule,
     ProjectsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    
   ],
 })
 export class ProjectsModule {}

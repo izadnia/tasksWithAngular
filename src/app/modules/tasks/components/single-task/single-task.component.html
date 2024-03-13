@@ -2,8 +2,8 @@
 <div class="flex flex-col md:flex-row ">
   <div class="m-2 p-2">
     <p class="m-2 p-2 text-xl text-cyan-800">عنوان : {{selectedProject[0].title}}</p>
-    <p class="m-2 p-2 text-xl text-green-700">تاریخ شروع : {{selectedProject[0].initDate | date}}</p>
-    <p class="m-2 p-2 text-xl text-green-700">تاریخ خاتمه : {{selectedProject[0].finishDate | date}}</p>
+    <p class="m-2 p-2 text-xl text-green-700">تاریخ شروع : {{selectedProject[0].initDate | persianDate}}</p>
+    <p class="m-2 p-2 text-xl text-green-700">تاریخ خاتمه : {{selectedProject[0].finishDate | persianDate}}</p>
     <p class="m-2 p-2 text-xl text-red-600">وضعیت : {{selectedProject[0].finish ? 'به اتمام رسیده': 'هنوز در جریان است'}}</p>
   </div>
   <hr/>

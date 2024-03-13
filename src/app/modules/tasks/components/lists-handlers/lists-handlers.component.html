@@ -12,7 +12,7 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let item of incomeList">
+      <tr class="border hover:bg-fuchsia-100" *ngFor="let item of incomeList">
         <td
           *ngFor="let key of getColumnKeys()"
           class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
@@ -20,12 +20,12 @@
           <ng-container
             *ngIf="key === 'initDate' || key === 'finishDate'; else defaultCell"
           >
-            {{ item[key] | date : "mediumDate" }}
+            {{ item[key] | persianDate }}
           </ng-container>
           <ng-template #defaultCell>
             <ng-container *ngIf="key == 'taskKey'; else elseTemplate2">
               <button
-                class="m-2 p-2 text-cyan-700 border border-cyan-700 rounded-md"
+                class="m-2 p-2 text-cyan-700 border border-cyan-700 rounded-md hover:bg-cyan-700 hover:text-white"
                 [routerLink]="['/tasks/edit/', item.taskKey]"
                 routerLinkActive="router-link-active"
               >

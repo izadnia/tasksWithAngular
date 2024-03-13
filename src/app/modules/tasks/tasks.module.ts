@@ -6,6 +6,7 @@ import { SingleTaskComponent } from './components/single-task/single-task.compon
 import { ListsHandlersComponent } from './components/lists-handlers/lists-handlers.component';
 import { EditComponent } from './components/edit/edit.component';
 import { FormsModule } from '@angular/forms';
+import { PersianDatePipe } from './pipes/persian-date.pipe';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
     TasksComponent,
     SingleTaskComponent,
     ListsHandlersComponent,
-    EditComponent
+    EditComponent,
+    PersianDatePipe
   ],
   imports: [
     CommonModule,
