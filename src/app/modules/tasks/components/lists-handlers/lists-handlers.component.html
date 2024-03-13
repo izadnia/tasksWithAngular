@@ -24,18 +24,33 @@
           </ng-container>
           <ng-template #defaultCell>
             <ng-container *ngIf="key == 'taskKey'; else elseTemplate2">
-              
-              <button
-                class="m-2 p-2 text-cyan-700 border border-cyan-700 rounded-md hover:bg-cyan-700 hover:text-white"
-                [routerLink]="['/tasks/edit/', item.taskKey]"
-                routerLinkActive="router-link-active"
-              >
-                ویرایش
-              </button>
+              <div>
+                <button
+                  class="mx-1 p-2 text-emerald-600 border border-emerald-600 rounded-md hover:bg-emerald-600 hover:text-white"
+                  [routerLink]="['/tasks/', item.taskKey]"
+                  routerLinkActive="router-link-active"
+                >
+                  جزئیات
+                </button>
+                <button
+                  class="mx-1 p-2 text-cyan-700 border border-cyan-700 rounded-md hover:bg-cyan-700 hover:text-white"
+                  [routerLink]="['/tasks/edit/', item.taskKey]"
+                  routerLinkActive="router-link-active"
+                >
+                  ویرایش
+                </button>
+                <button
+                  class="mx-1 p-2 text-red-700 border border-red-700 rounded-md hover:bg-red-700 hover:text-white"
+                  routerLinkActive="router-link-active"
+                  (click)="deleteProject(item[key])"
+                >
+                  حذف
+                </button>
+              </div>
             </ng-container>
             <ng-template #elseTemplate2>
               <div
-                class=" cursor-pointer"
+                class="cursor-pointer"
                 [routerLink]="['/tasks/', item.taskKey]"
               >
                 {{ item[key] }}

@@ -22,4 +22,9 @@ export class ListsHandlersComponent {
     }
     return new Date(date);
   }
+  deleteProject(data: string) {
+    let i = this.incomeList.filter((m) => m.taskKey == data)[0].title;
+    console.log(i);
+    return alert('پروژه ی ' + i + ' از لیست پروژها حذف گردید ');
+  }
 }
