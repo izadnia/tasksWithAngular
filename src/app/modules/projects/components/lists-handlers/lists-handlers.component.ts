@@ -1,5 +1,6 @@
 import { Conditional } from '@angular/compiler';
 import { Component, Input } from '@angular/core';
+import { ProjectTestService } from '../../../../services/project-test.service';
 import { PersianDatePipe } from '../../../projects/pipes/persian-date.pipe';
 
 @Component({
@@ -8,6 +9,7 @@ import { PersianDatePipe } from '../../../projects/pipes/persian-date.pipe';
   styleUrl: './lists-handlers.component.scss',
 })
 export class ListsHandlersComponent {
+  constructor(private projectService: ProjectTestService) {}
   @Input() incomeList: any[] = [];
   translationMap: any = {
     id: 'شناسه',
@@ -31,8 +33,11 @@ export class ListsHandlersComponent {
     return new Date(date);
   }
   deleteProject(data: string) {
-    let i = this.incomeList.filter((m) => m.taskKey == data)[0].title;
-    console.log(i);
-    return alert('پروژه ی ' + i + ' از لیست پروژها حذف گردید ');
+    let selectedProject = this.incomeList.filter((m) => m.taskKey == data)[0]
+      .title;
+    this.projectService
+      .deleteSingleProject(data)
+      .subscribe((m) => (this.incomeList = m));
+    return alert('پروژه ی ' + selectedProject + ' از لیست پروژها حذف گردید ');
   }
 }

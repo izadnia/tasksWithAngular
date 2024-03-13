@@ -10,7 +10,7 @@ export class ProjectTestService {
   selectedProject: any;
   selectedTask: any;
 
-  getprojectDetail(taskKey: string) : Observable<any> {
+  getprojectDetail(taskKey: string): Observable<any> {
     this.selectedProject = this.projectsList.filter(
       (m) => m.taskKey == taskKey
     )[0];
@@ -97,6 +97,14 @@ export class ProjectTestService {
     data.finish = false;
     this.projectsList.push(data);
     return of(data);
+  }
+
+  deleteSingleProject(data: string): Observable<Projects[]> {
+    this.projectsList.splice(
+      this.projectsList.findIndex((m) => (m.taskKey = data)) - 1,
+      1
+    );
+    return of(this.projectsList);
   }
 
   getTaskList(): Observable<Tasks[]> {
