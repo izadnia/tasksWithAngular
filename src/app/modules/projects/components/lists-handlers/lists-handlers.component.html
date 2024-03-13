@@ -1,4 +1,5 @@
 <div class="block m-2 p-2 w-full overflow-x-auto">
+  
   <table class="items-center bg-transparent w-full border-collapse">
     <thead>
       <tr>
@@ -6,32 +7,59 @@
           *ngFor="let key of getColumnKeys()"
           class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-right"
         >
-        
-        {{ translationMap[key] }}
+          {{ translationMap[key] }}
         </th>
       </tr>
     </thead>
 
     <tbody>
-    <ng-container *ngFor="let item of incomeList">
-      <tr class=" border cursor-pointer" [routerLink]="['/tasks/',item.taskKey]" routerLinkActive="router-link-active" >
-        <td
-          *ngFor="let key of getColumnKeys()"
-          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+      <ng-container *ngFor="let item of incomeList">
+        <tr
+          class="border "
+          routerLinkActive="router-link-active"
         >
-          <ng-container
-            *ngIf="key === 'initDate' || key === 'finishDate'; else defaultCell"
+          <td *ngFor="let key of getColumnKeys()"
+            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
           >
-            {{ item[key] | date:'mediumDate' }}
-          </ng-container>
-          
-          <ng-template #defaultCell>
-            {{ item[key] }}
-          </ng-template>
-        </td>
-      </tr>
-    </ng-container>
-    
+            <ng-container
+              *ngIf="key === 'initDate' || key === 'finishDate';else elseOfDate">
+              {{ item[key] | date : "mediumDate" }}
+            </ng-container>
+            <ng-template  #elseOfDate>
+              <ng-container *ngIf="key === 'taskKey'; else elseOfTaskKey">
+                <div>
+                  <button
+                  class="mx-1 p-2 text-cyan-700 border border-cyan-700 rounded-md"
+                  [routerLink]="['/projects/edit/',item[key]]"                
+                  routerLinkActive="router-link-active"
+                >
+                  ویرایش
+                </button>
+                <button
+                class="mx-1 p-2 text-red-700 border border-red-700 rounded-md"
+                (click)="deleteProject(item[key])"
+                routerLinkActive="router-link-active"
+              >
+                حذف
+              </button>
+                </div>
+              </ng-container>
+              <ng-template #elseOfTaskKey>
+                <ng-container *ngIf="key === 'finish'; else elseOfFinish">
+                  {{ item[key] == false ? "در جریان" : "خاتمه یافته" }}
+                </ng-container>
+                <ng-template #elseOfFinish >
+                  <div [routerLink]="['/tasks/', item.taskKey]" class=" cursor-pointer font-bold">
+                    {{ item[key] }}
+                  </div>
+                  
+                </ng-template>
+              </ng-template>
+
+            </ng-template>
+          </td>
+        </tr>
+      </ng-container>
     </tbody>
   </table>
 </div>

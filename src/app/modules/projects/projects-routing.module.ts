@@ -12,6 +12,10 @@ const routes: Routes = [
     path: 'new-project',
     component: PostProjectComponent,
   },
+  {
+    path:'edit/:id',
+    component:PostProjectComponent
+  }
 ];
 
 @NgModule({

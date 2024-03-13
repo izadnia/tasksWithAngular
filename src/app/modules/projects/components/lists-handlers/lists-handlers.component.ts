@@ -1,3 +1,4 @@
+import { Conditional } from '@angular/compiler';
 import { Component, Input } from '@angular/core';
 import { PersianDatePipe } from '../../../projects/pipes/persian-date.pipe';
 
@@ -16,6 +17,7 @@ export class ListsHandlersComponent {
     taskKey: 'اقدام',
     finish: 'وضعیت',
   };
+
   getColumnKeys(): string[] {
     if (this.incomeList.length === 0) {
       return [];
@@ -27,5 +29,10 @@ export class ListsHandlersComponent {
       return null;
     }
     return new Date(date);
+  }
+  deleteProject(data: string) {
+    let i = this.incomeList.filter((m) => m.taskKey == data)[0].title;
+    console.log(i);
+    return alert('پروژه ی ' + i + ' از لیست پروژها حذف گردید ');
   }
 }
