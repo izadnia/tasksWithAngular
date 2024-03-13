@@ -8,13 +8,19 @@ import { PersianDatePipe } from '../../../projects/pipes/persian-date.pipe';
 })
 export class ListsHandlersComponent {
   @Input() incomeList: any[] = [];
-
+  translationMap: any = {
+    id: 'شناسه',
+    title: 'عنوان',
+    initDate: 'تاریخ شروع',
+    finishDate: 'تاریخ پایان',
+    taskKey: 'اقدام',
+    finish: 'وضعیت',
+  };
   getColumnKeys(): string[] {
     if (this.incomeList.length === 0) {
       return [];
     }
-    // Assume all incomeList have the same keys
-    return Object.keys(this.incomeList[0]);
+    return Object.keys(this.translationMap);
   }
   formatDate(date: number | null): Date | null {
     if (date === null) {
