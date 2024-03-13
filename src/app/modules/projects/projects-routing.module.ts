@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EditComponent } from './components/edit/edit.component';
 import { PostProjectComponent } from './components/post-project/post-project.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 
@@ -14,7 +15,7 @@ const routes: Routes = [
   },
   {
     path:'edit/:id',
-    component:PostProjectComponent
+    component:EditComponent
   }
 ];
 
