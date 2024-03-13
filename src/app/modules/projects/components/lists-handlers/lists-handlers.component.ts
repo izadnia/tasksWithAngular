@@ -35,9 +35,24 @@ export class ListsHandlersComponent {
   deleteProject(data: string) {
     let selectedProject = this.incomeList.filter((m) => m.taskKey == data)[0]
       .title;
-    this.projectService
-      .deleteSingleProject(data)
-      .subscribe((m) => (this.incomeList = m));
-    return alert('پروژه ی ' + selectedProject + ' از لیست پروژها حذف گردید ');
+    if (
+      confirm(
+        '  آیا اطمینان دارید از حذف  ' +
+          '"' +
+          selectedProject +
+          '"' +
+          ' و تسک هایش از تمامی لیست ها    '
+      )
+    ) {
+      this.projectService
+        .deleteSingleProject(data)
+        .subscribe((m) => (this.incomeList = m));
+      return alert(
+        'پروژه ی ' +
+          selectedProject +
+          ' و تسک هایش از تمامی لیست ها حذف شدند   '
+      );
+    }
+    return;
   }
 }
