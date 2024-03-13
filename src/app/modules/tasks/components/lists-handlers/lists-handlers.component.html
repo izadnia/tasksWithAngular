@@ -24,6 +24,7 @@
           </ng-container>
           <ng-template #defaultCell>
             <ng-container *ngIf="key == 'taskKey'; else elseTemplate2">
+              
               <button
                 class="m-2 p-2 text-cyan-700 border border-cyan-700 rounded-md hover:bg-cyan-700 hover:text-white"
                 [routerLink]="['/tasks/edit/', item.taskKey]"
