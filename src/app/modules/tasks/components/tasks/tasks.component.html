@@ -8,6 +8,6 @@
     >
      ایجاد تسک جدید
     </button>
-    <app-lists-handlers [incomeList]="taskList"></app-lists-handlers>
+    <app-lists-handlers (deletekeyEmitted)="deleteTask($event)" [incomeList]="taskList"></app-lists-handlers>
   </div>
   

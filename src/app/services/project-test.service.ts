@@ -101,17 +101,13 @@ export class ProjectTestService {
 
   deleteSingleProject(data: string): Observable<Projects[]> {
     this.deleteSingleTask(data);
-    this.projectsList.splice(
-      this.projectsList.findIndex((m) => (m.taskKey = data)) - 1,
-      1
-    );
+    let i = this.projectsList.findIndex((m) => m.taskKey === data);
+    this.projectsList.splice(i, 1);
     return of(this.projectsList);
   }
   deleteSingleTask(data: string): Observable<Tasks[]> {
-    this.tasksList.splice(
-      this.tasksList.findIndex((m) => (m.taskKey = data)) - 1,
-      1
-    );
+    let i = this.tasksList.findIndex((m) => m.taskKey === data);
+    this.tasksList.splice(i,1);
     return of(this.tasksList);
   }
 

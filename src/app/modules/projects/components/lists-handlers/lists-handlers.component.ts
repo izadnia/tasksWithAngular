@@ -1,5 +1,5 @@
 import { Conditional } from '@angular/compiler';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProjectTestService } from '../../../../services/project-test.service';
 import { PersianDatePipe } from '../../../projects/pipes/persian-date.pipe';
 
@@ -11,6 +11,8 @@ import { PersianDatePipe } from '../../../projects/pipes/persian-date.pipe';
 export class ListsHandlersComponent {
   constructor(private projectService: ProjectTestService) {}
   @Input() incomeList: any[] = [];
+  @Output() deletekeyEmitted = new EventEmitter<string>();
+
   translationMap: any = {
     id: 'شناسه',
     title: 'عنوان',
@@ -32,27 +34,7 @@ export class ListsHandlersComponent {
     }
     return new Date(date);
   }
-  deleteProject(data: string) {
-    let selectedProject = this.incomeList.filter((m) => m.taskKey == data)[0]
-      .title;
-    if (
-      confirm(
-        '  آیا اطمینان دارید از حذف  ' +
-          '"' +
-          selectedProject +
-          '"' +
-          ' و تسک هایش از تمامی لیست ها    '
-      )
-    ) {
-      this.projectService
-        .deleteSingleProject(data)
-        .subscribe((m) => (this.incomeList = m));
-      return alert(
-        'پروژه ی ' +
-          selectedProject +
-          ' و تسک هایش از تمامی لیست ها حذف شدند   '
-      );
-    }
-    return;
+  deleteProject(data : string){
+    this.deletekeyEmitted.emit(data); 
   }
 }

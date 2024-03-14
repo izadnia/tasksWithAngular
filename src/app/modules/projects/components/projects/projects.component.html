@@ -9,5 +9,5 @@
   >
     ایجاد پروژه جدید
   </button>
-  <app-lists-handlers [incomeList]="projectList"></app-lists-handlers>
+  <app-lists-handlers (deletekeyEmitted)="deleteProject($event)" [incomeList]="projectList"></app-lists-handlers>
 </div>

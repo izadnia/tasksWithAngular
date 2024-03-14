@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PersianDatePipe } from '../../../projects/pipes/persian-date.pipe';
 
 @Component({
@@ -8,6 +8,7 @@ import { PersianDatePipe } from '../../../projects/pipes/persian-date.pipe';
 })
 export class ListsHandlersComponent {
   @Input() incomeList: any[] = [];
+  @Output() deletekeyEmitted = new EventEmitter<string>();
 
   getColumnKeys(): string[] {
     if (this.incomeList.length === 0) {
@@ -22,9 +23,7 @@ export class ListsHandlersComponent {
     }
     return new Date(date);
   }
-  deleteProject(data: string) {
-    let i = this.incomeList.filter((m) => m.taskKey == data)[0].title;
-    console.log(i);
-    return alert('پروژه ی ' + i + ' از لیست پروژها حذف گردید ');
+  deleteTask(data : string){
+    this.deletekeyEmitted.emit(data); 
   }
 }
