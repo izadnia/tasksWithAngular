@@ -26,11 +26,11 @@ deleteTask(data: string) {
     .title;
   if (
     confirm(
-      '  آیا اطمینان دارید از حذف  ' +
+      '  آیا از حذف تسک :  ' +
         '"' +
         selectedTask +
         '"' +
-        ' و تسک هایش از تمامی لیست ها    '
+        ' اطمینان دارید '
     )
   ) {
     this.projectService
@@ -38,9 +38,9 @@ deleteTask(data: string) {
       .subscribe((m) => this.taskList = m);
       console.log(this.taskList)
     return alert(
-      'پروژه ی ' +
+      ' تسک :  ' +
         selectedTask +
-        ' و تسک هایش از تمامی لیست ها حذف شدند   '
+        ' با موفقیت حذف شد، شما میتوانید تسک جدید تعریف کنید  '
     );
   }
   return;
