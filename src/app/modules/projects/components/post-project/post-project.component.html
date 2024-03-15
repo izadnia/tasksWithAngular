@@ -88,16 +88,16 @@
     class="modal-overlay"
     
   >
-    <div class="relative w-auto my-6 mx-auto max-w-lg">
+    <div class="relative w-auto my-6 mx-auto p-4 max-w-sm">
       <!--content-->
       <div
-        class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none"
+        class="border-0  rounded-lg shadow-lg relative flex flex-col w-full bg-gray-50 outline-none focus:outline-none"
       >
         <!--header-->
         <div
           class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t"
         >
-          <h3 class="text-xl text-cyan-800 font-semibold">پیام</h3>
+          <h3 class="text-5xl text-red-800 font-semibold">خطا</h3>
           <button
             class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
             (click)="toggleModal()"
@@ -114,13 +114,13 @@
           <p
             class="my-4 text-blueGray-500 text-lg text-red-700 leading-relaxed"
           >
-            {{ !titleCheckFlag ? "وارد کردن نام پروژه الزامی است" : null }}
+            {{ !titleCheckFlag ? "* وارد کردن نام پروژه الزامی است" : null }}
           </p>
           <p
             class="my-4 text-blueGray-500 text-lg text-red-700 leading-relaxed"
           >
             {{
-              !initDateCheckFlag ? "وارد کردن زمان شروع پروژه الزامی است" : null
+              !initDateCheckFlag ? "* وارد کردن زمان شروع پروژه الزامی است" : null
             }}
           </p>
           <p
@@ -128,7 +128,7 @@
           >
             {{
               !finishDateCheckFlag
-                ? "وارد کردن زمان خاتمه پروژه الزامی است"
+                ? "* وارد کردن زمان خاتمه پروژه الزامی است"
                 : null
             }}
           </p>
