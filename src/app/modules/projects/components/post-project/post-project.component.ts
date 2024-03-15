@@ -1,7 +1,9 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router, RouterLinkActive } from '@angular/router';
 import { finalize } from 'rxjs';
+import { Projects } from '../../../../models/Projects';
 import { ProjectTestService } from '../../../../services/project-test.service';
 
 @Component({
@@ -10,66 +12,81 @@ import { ProjectTestService } from '../../../../services/project-test.service';
   styleUrl: './post-project.component.scss',
 })
 export class PostProjectComponent {
-  
-  initDateValue = new FormControl();
-  finishDateValue = new FormControl();
-
-
   constructor(
     private projectService: ProjectTestService,
     private router: Router
   ) {}
+  ngOnInit(): void {
 
-  item: any = {};
+  }
+  item: Projects = new Projects();
 
-  ngOnInit(): void {}
-
+  initDateValue = new FormControl();
+  finishDateValue = new FormControl();
   productModel: any;
-
-  titleCheckFlag: boolean = false;
-  initDateCheckFlag: boolean = false;
-  finishDateCheckFlag: boolean = false;
+  titleCheckFlag: boolean = true;
+  initDateCheckFlag: boolean = true;
+  finishDateCheckFlag: boolean = true;
   readyToSend = false;
+  showModal = false;
+
+  toggleModal() {
+    this.showModal = !this.showModal;
+  }
 
   flagCheck() {
-    this.item.initDate == undefined
+    console.log(this.item.initDate.length);
+    if (
+      !this.initDateCheckFlag ||
+      !this.finishDateCheckFlag ||
+      !this.titleCheckFlag
+    ) {
+      this.readyToSend = false;
+    }
+    this.item.initDate == ''
       ? (this.initDateCheckFlag = false)
       : (this.initDateCheckFlag = true);
-    this.item.finishDate == undefined
+
+    this.item.finishDate == ''
       ? (this.finishDateCheckFlag = false)
       : (this.finishDateCheckFlag = true);
-    this.item.titleCheckFlag == undefined
+
+    this.item.title == ''
       ? (this.titleCheckFlag = false)
       : (this.titleCheckFlag = true);
+
     if (
-      this.initDateCheckFlag ||
-      this.finishDateCheckFlag ||
+      this.initDateCheckFlag &&
+      this.finishDateCheckFlag &&
       this.titleCheckFlag
     ) {
       this.readyToSend = true;
     }
     return;
   }
-
+routToProject(){
+  this.router.navigate(['projects'])
+}
   onSubmit() {
     this.flagCheck();
     if (this.readyToSend) {
       this.projectService.setNewProject(this.item).subscribe((Response) => {
         if (Response.title == this.item.title) {
-          alert('با موفقیت اضافه شد');
-          this.router.navigate(['projects']);
+          this.toggleModal();
+          
         } else alert('یه مشکلی پیش اومد');
       });
     } else {
-      this.titleCheckFlag == false
-        ? alert('وارد کردن نام پروژه الزامی است')
-        : null;
-      this.initDateCheckFlag == false
-        ? alert('وارد کردن زمان شروع پروژه الزامی است')
-        : null;
-      this.finishDateCheckFlag == false
-        ? alert('وارد کردن زمان خاتمه پروژه الزامی است')
-        : null;
+      this.toggleModal();
+      // this.titleCheckFlag == false
+      //   ? alert('وارد کردن نام پروژه الزامی است')
+      //   : null;
+      // this.initDateCheckFlag == false
+      //   ? alert('وارد کردن زمان شروع پروژه الزامی است')
+      //   : null;
+      // this.finishDateCheckFlag == false
+      //   ? alert('وارد کردن زمان خاتمه پروژه الزامی است')
+      //   : null;
     }
   }
 }
