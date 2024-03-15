@@ -1,1 +1,69 @@
-<p>edit project works!</p>
+<p class="m-2 p-2 text-4xl">شناسه : {{ selectedProject[0].id }}</p>
+<div class="flex flex-col md:flex-row">
+
+    <div class="m-2 p-2 flex flex-col">
+        <label>عنوان :</label>
+        <input
+          [(ngModel)]="selectedProject[0].title"
+          class="m-2 p-2 text-xl border text-cyan-800"
+        />
+        <label> تاریخ شروع :</label>
+        <input
+          [(ngModel)]="selectedProject[0].initDate"
+          type="date"
+          class="m-2 p-2 text-xl border text-green-700"
+        />
+        <label> تاریخ خاتمه</label>
+        <input
+          [(ngModel)]="selectedProject[0].finishDate"
+          type="date"
+          class="m-2 p-2 text-xl border text-green-700"
+        />
+        <label> وضعیت :</label>
+        <input
+          [(ngModel)]="selectedProject[0].finish"
+          class="m-2 p-2 text-xl border text-red-600"
+        />
+      </div>
+
+  <hr />
+
+  <ng-container *ngIf="selectedProject[1].length > 0; else elseTemplate">
+    <div class="m-2 p-2 flex flex-col" *ngFor="let item of selectedProject[1]">
+      <label>اقدام کننده : </label>
+      <input [(ngModel)]="item.actor" class="border m-2 p-2 text-xl" />
+      <label>توضیحات اقدام کننده : </label>
+      <textarea
+        [(ngModel)]="item.describtion"
+        class="border m-2 p-2 text-xl"
+      ></textarea>
+    </div>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <div class="m-2 p-2">
+      <p class="m-2 p-2 text-xl">هنوز اقدامی برای این پروژه ثبت نشده</p>
+      <button
+        class="m-2 p-2 text-cyan-700 border border-cyan-700 rounded-md"
+        [routerLink]="['new-task/:id']"
+        routerLinkActive="router-link-active"
+      >
+        ثبت اقدام جدید
+      </button>
+    </div>
+    <
+  </ng-template>
+</div>
+<button
+  class="m-8 p-2 text-cyan-700 border border-cyan-700 rounded-md"
+  [routerLink]="['/projects']"
+  routerLinkActive="router-link-active"
+>
+  بازگشت به لیست پروژه ها
+</button>
+<button
+  class="m-8 p-2 text-cyan-700 border border-cyan-700 rounded-md"
+  [routerLink]="['/tasks']"
+  routerLinkActive="router-link-active"
+>
+  بازگشت به لیست تسک ها
+</button>

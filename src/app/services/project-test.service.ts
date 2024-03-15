@@ -25,32 +25,32 @@ export class ProjectTestService {
     {
       id: 1,
       title: 'خرید سیم کارت',
-      initDate: 184657755351,
-      finishDate: 194657755351,
+      initDate: '1402/12/19',
+      finishDate: '1402/12/28',
       taskKey: 'simbuy123',
       finish: false,
     },
     {
       id: 2,
       title: 'پخش سیم کارت',
-      initDate: 184657755351,
-      finishDate: 194657755351,
+      initDate: '1402/12/19',
+      finishDate: '1402/12/28',
       taskKey: 'simDis123',
       finish: false,
     },
     {
       id: 3,
       title: 'جلسه با اعضای تیم',
-      initDate: 184657755351,
-      finishDate: 194657755351,
+      initDate: '1402/12/19',
+      finishDate: '1402/12/28',
       taskKey: 'simDiswweS123',
       finish: false,
     },
     {
       id: 4,
       title: 'جلسه با ذی نفعان پروژه',
-      initDate: 184657755351,
-      finishDate: 194657755351,
+      initDate: '1402/12/19',
+      finishDate: '1402/12/28',
       taskKey: 'siersdSs123',
       finish: false,
     },
@@ -107,7 +107,7 @@ export class ProjectTestService {
   }
   deleteSingleTask(data: string): Observable<Tasks[]> {
     let i = this.tasksList.findIndex((m) => m.taskKey === data);
-    this.tasksList.splice(i,1);
+    this.tasksList.splice(i, 1);
     return of(this.tasksList);
   }
 

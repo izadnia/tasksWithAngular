@@ -1,6 +1,5 @@
 <div>
   <h1 class="m-2 p-2 text-3xl">پروژه ی جدید</h1>
-
   <form
     (ngSubmit)="onSubmit()"
     class="bg-white max-w-72 shadow-md rounded px-8 pt-6 pb-8 mb-4"
@@ -28,21 +27,18 @@
       <label class="block text-gray-700 text-sm font-bold mb-2" for="initDate">
         تاریخ شروع
       </label>
-      <input
-        [(ngModel)]="item.initDate"
-        name="initDate"
-        id="initDate"
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        type="date"
-        placeholder="تاریخ شروع"
-        #initDateModel="ngModel"
-      />
-      <div
-        [hidden]="initDateModel.pristine || initDateModel.value !== ''"
-        class="alert text-red-700"
-      >
-        تاریخ شروع نمی تواند خالی باشد
-      </div>
+      <ng-persian-datepicker [dateInitValue]="false"  >
+        <input
+          type="text"
+          class="shadow cursor-pointer appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          [formControl]="initDateValue"
+          [(ngModel)]="item.initDate"
+          name="initDate"
+          id="initDate"
+          autocomplete="off"
+          placeholder="تاریخ شروع"
+        />
+      </ng-persian-datepicker>
     </div>
 
     <div class="mb-4">
@@ -52,29 +48,28 @@
       >
         تاریخ پایان
       </label>
-      <input
-        [(ngModel)]="item.finishDate"
-        name="finishDate"
-        id="finishDate"
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        type="date"
-        placeholder="تاریخ پایان"
-        #finishDateModel="ngModel"
-      />
-      <div
-        [hidden]="finishDateModel.pristine || finishDateModel.value !== ''"
-        class="alert text-red-700"
-      >
-        تاریخ خاتمه نمی تواند خالی باشد
-      </div>
+      <ng-persian-datepicker [dateInitValue]="false"  >
+        <input
+          type="text"
+          class="shadow cursor-pointer  appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          [formControl]="finishDateValue"
+          [(ngModel)]="item.finishDate"
+          name="finishDate"
+          id="finishDate"
+          autocomplete="off"
+        
+          placeholder="تاریخ شروع"
+        />
+      </ng-persian-datepicker>
+      
     </div>
 
     <div class="flex items-center justify-between">
       <button
         [hidden]="
-          !finishDateModel.value || !initDateModel.value || !titleModel.value
+           
         "
-        class="bg-blue-600 hover:bg-blue-700  text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         type="submit"
       >
         ایجاد پروژه جدید

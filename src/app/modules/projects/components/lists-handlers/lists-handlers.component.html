@@ -23,7 +23,7 @@
           >
             <ng-container
               *ngIf="key === 'initDate' || key === 'finishDate';else elseOfDate">
-              {{ item[key] | persianDate }}
+              {{ item[key] }}
             </ng-container>
             <ng-template  #elseOfDate>
               <ng-container *ngIf="key === 'taskKey'; else elseOfTaskKey">

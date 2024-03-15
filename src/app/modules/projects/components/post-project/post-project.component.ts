@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router, RouterLinkActive } from '@angular/router';
 import { finalize } from 'rxjs';
 import { ProjectTestService } from '../../../../services/project-test.service';
@@ -9,6 +10,10 @@ import { ProjectTestService } from '../../../../services/project-test.service';
   styleUrl: './post-project.component.scss',
 })
 export class PostProjectComponent {
+  
+  initDateValue = new FormControl();
+  finishDateValue = new FormControl();
+
 
   constructor(
     private projectService: ProjectTestService,

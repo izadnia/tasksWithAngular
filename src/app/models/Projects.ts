@@ -1,8 +1,8 @@
 export class Projects {
   id: number = 0;
   title: string = '';
-  initDate: number = 0;
-  finishDate: number = 0;
+  initDate: string = '';
+  finishDate: string = '';
   taskKey: string = '';
   finish : boolean = false;
 }

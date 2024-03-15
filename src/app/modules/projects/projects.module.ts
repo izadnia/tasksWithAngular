@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListsHandlersComponent } from './components/lists-handlers/lists-handlers.component';
 import { PersianDatePipe } from './pipes/persian-date.pipe';
 import { EditComponent } from './components/edit/edit.component';
+import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
 
 @NgModule({
   declarations: [
@@ -16,14 +17,14 @@ import { EditComponent } from './components/edit/edit.component';
     PostProjectComponent,
     ListsHandlersComponent,
     PersianDatePipe,
-    EditComponent
+    EditComponent,
   ],
   imports: [
     CommonModule,
     ProjectsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    
+    NgPersianDatepickerModule,
   ],
 })
 export class ProjectsModule {}
