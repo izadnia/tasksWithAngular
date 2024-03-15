@@ -97,7 +97,8 @@
         <div
           class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t"
         >
-          <h3 class="text-5xl text-red-800 font-semibold">خطا</h3>
+          <h3 [hidden]="readyToSend" class="text-5xl text-red-800 font-semibold">خطا!</h3>
+          <h3 [hidden]="!readyToSend" class="text-5xl text-green-800 font-semibold">تبریک!</h3>
           <button
             class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
             (click)="toggleModal()"
