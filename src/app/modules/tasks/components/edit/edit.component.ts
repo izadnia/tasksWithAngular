@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ProjectTestService } from '../../../../services/project-test.service';
 
@@ -12,7 +13,8 @@ export class EditComponent {
     private projectService: ProjectTestService,
     private rout: ActivatedRoute
   ) {}
-
+  initDateValue = new FormControl();
+  finishDateValue = new FormControl();
   selectedProject: any;
   pageKey: string = '';
   ngOnInit(): void {

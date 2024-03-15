@@ -5,8 +5,9 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { SingleTaskComponent } from './components/single-task/single-task.component';
 import { ListsHandlersComponent } from './components/lists-handlers/lists-handlers.component';
 import { EditComponent } from './components/edit/edit.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PersianDatePipe } from './pipes/persian-date.pipe';
+import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
 
 
 @NgModule({
@@ -20,7 +21,9 @@ import { PersianDatePipe } from './pipes/persian-date.pipe';
   imports: [
     CommonModule,
     TasksRoutingModule,
-    FormsModule
+    FormsModule,
+    NgPersianDatepickerModule,
+    ReactiveFormsModule
   ]
 })
 export class TasksModule { }
