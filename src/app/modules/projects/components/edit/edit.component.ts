@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ProjectTestService } from '../../../../services/project-test.service';
 
@@ -15,6 +16,8 @@ export class EditComponent {
 
   selectedProject: any;
   pageKey: string = '';
+  initDateValue = new FormControl();
+  finishDateValue = new FormControl();
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.

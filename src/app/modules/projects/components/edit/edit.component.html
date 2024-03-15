@@ -1,30 +1,43 @@
 <p class="m-2 p-2 text-4xl">شناسه : {{ selectedProject[0].id }}</p>
 <div class="flex flex-col md:flex-row">
-
-    <div class="m-2 p-2 flex flex-col">
-        <label>عنوان :</label>
-        <input
-          [(ngModel)]="selectedProject[0].title"
-          class="m-2 p-2 text-xl border text-cyan-800"
-        />
-        <label> تاریخ شروع :</label>
-        <input
-          [(ngModel)]="selectedProject[0].initDate"
-          type="date"
-          class="m-2 p-2 text-xl border text-green-700"
-        />
-        <label> تاریخ خاتمه</label>
-        <input
-          [(ngModel)]="selectedProject[0].finishDate"
-          type="date"
-          class="m-2 p-2 text-xl border text-green-700"
-        />
-        <label> وضعیت :</label>
-        <input
-          [(ngModel)]="selectedProject[0].finish"
-          class="m-2 p-2 text-xl border text-red-600"
-        />
-      </div>
+  <div class="m-2 p-2 flex flex-col">
+    <label>عنوان :</label>
+    <input
+      [(ngModel)]="selectedProject[0].title"
+      class="m-2 p-2 text-xl border text-cyan-800"
+    />
+    <label> تاریخ شروع :</label>
+    <ng-persian-datepicker [dateInitValue]="false">
+      <input
+        type="text"
+        class="shadow cursor-pointer m-2 p-2 text-xl border text-green-700"
+        [formControl]="initDateValue"
+        [(ngModel)]="selectedProject[0].initDate"
+        name="initDate"
+        id="initDate"
+        autocomplete="off"
+        placeholder="تاریخ شروع"
+      />
+    </ng-persian-datepicker>
+    <label> تاریخ خاتمه</label>
+    <ng-persian-datepicker [dateInitValue]="false">
+      <input
+        type="text"
+        class="shadow cursor-pointer m-2 p-2 text-xl border text-green-700"
+        [formControl]="finishDateValue"
+        [(ngModel)]="selectedProject[0].finishDate"
+        name="finishDate"
+        id="finishDate"
+        autocomplete="off"
+        placeholder="تاریخ پایان"
+      />
+    </ng-persian-datepicker>
+    <label> وضعیت :</label>
+    <input
+      [(ngModel)]="selectedProject[0].finish"
+      class="m-2 p-2 text-xl border text-red-600"
+    />
+  </div>
 
   <hr />
 
