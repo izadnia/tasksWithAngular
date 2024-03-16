@@ -1,34 +1,36 @@
 <div>
   <h1 class="text-2xl m-2 p-2">تسک جدید</h1>
-<div class="max-w-80">
-  <ng-container *ngIf="itemSelected != ''">
-    <div class="flex justify-between ">
-      <p class="m-2 p-2">پروژه :</p>
-      <p class="m-2 p-2 text-fuchsia-700">{{ itemSelected }}</p>
-    </div>
-  </ng-container>
-  <ng-container *ngIf="actorSelected != ''">
-    <div class="flex justify-between ">
-      <p class="m-2 p-2">اقدام کننده :</p>
-      <p class="m-2 p-2 text-fuchsia-700">{{ actorSelected }}</p>
-    </div>
-  </ng-container>
-  <ng-container *ngIf="taskSelected != ''">
-    <div class="flex justify-between ">
-      <p class="m-2 p-2">تسک :</p>
-      <p class="m-2 p-2 text-fuchsia-700">{{ taskSelected }}</p>
-    </div>
-  </ng-container>
-</div>
+  <div class="max-w-80">
+    <ng-container *ngIf="itemSelected != ''">
+      <div class="flex justify-between">
+        <p class="m-2 p-2">پروژه :</p>
+        <p class="m-2 p-2 text-fuchsia-700">{{ itemSelected }}</p>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="actorSelected != ''">
+      <div class="flex justify-between">
+        <p class="m-2 p-2">اقدام کننده :</p>
+        <p class="m-2 p-2 text-fuchsia-700">{{ actorSelected }}</p>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="taskSelected != ''">
+      <div class="flex justify-between">
+        <p class="m-2 p-2">تسک :</p>
+        <p class="m-2 p-2 text-fuchsia-700">{{ taskSelected }}</p>
+      </div>
+    </ng-container>
+  </div>
 
   <ng-container *ngIf="stepNumber == 0; else stepOne">
-    <p class="m-2 p-2 "> در اینجا شما می توانید یک تسک جدید ایجاد کنید </p>
-    <p class="m-2 p-2 "> توجه کنید هر تسک شامل: </p>
-    <p class="m-2 p-2 font-semibold text-fuchsia-800"> پروژه ی مربوطه </p>
-    <p class="m-2 p-2 font-semibold text-fuchsia-800"> اقدام کننده ی تسک </p>
-    <p class="m-2 p-2 font-semibold text-fuchsia-800"> توضیحات تسک </p>
-    <p class="m-2 p-2 "> می باشد، و پر کنید موارد بالا در فرآیند ایجاد تسک <span class="text-red-600 font-semibold">الزامی</span> است </p>
-    
+    <p class="m-2 p-2">در اینجا شما می توانید یک تسک جدید ایجاد کنید</p>
+    <p class="m-2 p-2">توجه کنید هر تسک شامل:</p>
+    <p class="m-2 p-2 font-semibold text-fuchsia-800">پروژه ی مربوطه</p>
+    <p class="m-2 p-2 font-semibold text-fuchsia-800">اقدام کننده ی تسک</p>
+    <p class="m-2 p-2 font-semibold text-fuchsia-800">توضیحات تسک</p>
+    <p class="m-2 p-2">
+      می باشد، و پر کنید موارد بالا در فرآیند ایجاد تسک
+      <span class="text-red-600 font-semibold">الزامی</span> است
+    </p>
 
     <button
       class="m-2 p-2 text-cyan-700 border border-cyan-700 rounded-md"
@@ -156,14 +158,14 @@
             }}
           </p>
           <p
-          class="my-4 text-blueGray-500 text-md text-red-700 leading-relaxed"
-        >
-          {{
-            this.taskSelected == "" && this.stepNumber == 3
-              ? "تسک را باید توضیح دهید"
-              : null
-          }}
-        </p>
+            class="my-4 text-blueGray-500 text-md text-red-700 leading-relaxed"
+          >
+            {{
+              this.taskSelected == "" && this.stepNumber == 3
+                ? "تسک را باید توضیح دهید"
+                : null
+            }}
+          </p>
           <button
             [hidden]="itemSelected != ''"
             class="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
