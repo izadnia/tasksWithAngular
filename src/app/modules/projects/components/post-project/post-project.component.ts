@@ -1,8 +1,6 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Router, RouterLinkActive } from '@angular/router';
-import { finalize } from 'rxjs';
+import { Router } from '@angular/router';
 import { Projects } from '../../../../models/Projects';
 import { ProjectTestService } from '../../../../services/project-test.service';
 
@@ -29,6 +27,8 @@ export class PostProjectComponent {
   finishDateCheckFlag: boolean = true;
   readyToSend = false;
   showModal = false;
+  
+
 
   toggleModal() {
     this.showModal = !this.showModal;

@@ -1,0 +1,11 @@
+<h2 class="text-xl m-2 p-2">اقدام کننده تسک را مشخص کنید:</h2>
+<ul class="flex flex-col space-y-4 max-w-64">
+    <li class="flex items-center">
+      <label class="flex items-center space-x-2 cursor-pointer rounded-xl p-2 w-64"> 
+        <span class="text-base font-medium cursor-pointer px-1 text-fuchsia-700  w-32">اقدام کننده</span>
+        <input (keyup)="onFilterChange()" class="rounded border p-2 outline-none text-fuchsia-950 border-gray-300 h-10  accent-fuchsia-800 max-w-32" type="text" name="myList" [(ngModel)]="selectedActor" value="{{ selectedActor }}" >
+       
+      </label>
+    </li>
+</ul>
+  

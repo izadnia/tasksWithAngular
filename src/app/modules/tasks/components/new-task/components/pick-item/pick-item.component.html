@@ -1,0 +1,11 @@
+
+<h2 class="text-xl m-2 p-2">لطفا پروژی ی مورد نظر را انتخاب کنید:</h2>
+<ul class="flex flex-col space-y-4 max-w-64">
+    <li *ngFor="let item of projectListCanBeSelected; let i = index" class="flex items-center">
+      <label class="flex items-center space-x-2 cursor-pointer rounded-xl hover:bg-fuchsia-100 p-2 w-64">
+        <input (change)="onFilterChange()" class="rounded border border-gray-300 w-5 h-5  accent-fuchsia-800" type="radio" name="myList" [(ngModel)]="selectedItem" value="{{ item.title }}" [checked]="selectedItem === item.title">
+        <span class="text-base font-medium cursor-pointer px-2  {{ selectedItem === item.title ? 'text-fuchsia-700 font-bold' : 'text-gray-700' }}">{{ item.title }}</span>
+      </label>
+    </li>
+</ul>
+  

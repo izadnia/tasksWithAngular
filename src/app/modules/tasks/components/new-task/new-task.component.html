@@ -1,0 +1,193 @@
+<div>
+  <h1 class="text-2xl m-2 p-2">تسک جدید</h1>
+<div class="max-w-80">
+  <ng-container *ngIf="itemSelected != ''">
+    <div class="flex justify-between ">
+      <p class="m-2 p-2">پروژه :</p>
+      <p class="m-2 p-2 text-fuchsia-700">{{ itemSelected }}</p>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="actorSelected != ''">
+    <div class="flex justify-between ">
+      <p class="m-2 p-2">اقدام کننده :</p>
+      <p class="m-2 p-2 text-fuchsia-700">{{ actorSelected }}</p>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="taskSelected != ''">
+    <div class="flex justify-between ">
+      <p class="m-2 p-2">تسک :</p>
+      <p class="m-2 p-2 text-fuchsia-700">{{ taskSelected }}</p>
+    </div>
+  </ng-container>
+</div>
+
+  <ng-container *ngIf="stepNumber == 0; else stepOne">
+    <p class="m-2 p-2 "> در اینجا شما می توانید یک تسک جدید ایجاد کنید </p>
+    <p class="m-2 p-2 "> توجه کنید هر تسک شامل: </p>
+    <p class="m-2 p-2 font-semibold text-fuchsia-800"> پروژه ی مربوطه </p>
+    <p class="m-2 p-2 font-semibold text-fuchsia-800"> اقدام کننده ی تسک </p>
+    <p class="m-2 p-2 font-semibold text-fuchsia-800"> توضیحات تسک </p>
+    <p class="m-2 p-2 "> می باشد، و پر کنید موارد بالا در فرآیند ایجاد تسک <span class="text-red-600 font-semibold">الزامی</span> است </p>
+    
+
+    <button
+      class="m-2 p-2 text-cyan-700 border border-cyan-700 rounded-md"
+      (click)="nextStep()"
+      routerLinkActive="router-link-active"
+    >
+      شروع
+    </button>
+  </ng-container>
+  <ng-template #stepOne>
+    <ng-container *ngIf="stepNumber == 1; else stepTwo">
+      <div>
+        <app-pick-item
+          (projectSelected)="onProjectSelected($event)"
+        ></app-pick-item>
+
+        <div class="my-2">
+          <button
+            (click)="prevStep()"
+            class="m-2 p-2 text-red-700 border border-red-700 rounded-md"
+            routerLinkActive="router-link-active"
+          >
+            قبل : توضیحات
+          </button>
+          <button
+            (click)="nextStep()"
+            class="m-2 p-2 text-cyan-700 border border-cyan-700 rounded-md"
+            routerLinkActive="router-link-active"
+          >
+            بعد : اقدام کننده
+          </button>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #stepTwo>
+      <ng-container *ngIf="stepNumber == 2; else elseTemplate">
+        <div>
+          <app-pick-actor
+            (actorSelected)="onActorSelected($event)"
+          ></app-pick-actor>
+          <button
+            class="m-2 p-2 text-red-700 border border-red-700 rounded-md"
+            (click)="prevStep()"
+            routerLinkActive="router-link-active"
+          >
+            قبل : انتخاب پروژه
+          </button>
+          <button
+            class="m-2 p-2 text-cyan-700 border border-cyan-700 rounded-md"
+            (click)="nextStep()"
+            routerLinkActive="router-link-active"
+          >
+            بعد : توضیحات
+          </button>
+        </div>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <app-define-task
+          (taskSelected)="onTaskSelected($event)"
+        ></app-define-task>
+        <button
+          class="m-2 p-2 text-red-700 border border-red-700 rounded-md"
+          (click)="prevStep()"
+          routerLinkActive="router-link-active"
+        >
+          قبل : اقدام کننده
+        </button>
+        <button
+          class="m-2 p-2 text-green-700 border border-green-700 rounded-md"
+          routerLinkActive="router-link-active"
+          (click)="nextStep()"
+        >
+          ثبت
+        </button>
+      </ng-template>
+    </ng-template>
+  </ng-template>
+
+  <div *ngIf="showModal" class="modal-overlay">
+    <div class="relative w-auto my-6 mx-auto p-4 max-w-sm">
+      <!--content-->
+      <div
+        class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-gray-50 outline-none focus:outline-none"
+      >
+        <!--header-->
+        <div
+          class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t"
+        >
+          <h3 class="text-5xl text-red-800 font-semibold">خطا!</h3>
+
+          <button
+            class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+            (click)="toggleModal()"
+          >
+            <span
+              class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none"
+            >
+              ×
+            </span>
+          </button>
+        </div>
+        <!--body-->
+        <div class="relative p-6 flex-auto">
+          <p
+            class="my-4 text-blueGray-500 text-lg text-red-700 leading-relaxed"
+          >
+            {{ itemSelected == "" ? "*باید یک پروژه را انتخاب کنید" : null }}
+          </p>
+          <p
+            class="my-4 text-blueGray-500 text-md text-gray-700 leading-relaxed"
+          >
+            {{
+              itemSelected == ""
+                ? "اگر در لیست پروژه مد نظر نیست، یکی بسازید"
+                : null
+            }}
+          </p>
+          <p
+            class="my-4 text-blueGray-500 text-md text-red-700 leading-relaxed"
+          >
+            {{
+              this.actorSelected == "" && this.stepNumber == 2
+                ? "اقدام کننده نمی تواند خالی باشد"
+                : null
+            }}
+          </p>
+          <p
+          class="my-4 text-blueGray-500 text-md text-red-700 leading-relaxed"
+        >
+          {{
+            this.taskSelected == "" && this.stepNumber == 3
+              ? "تسک را باید توضیح دهید"
+              : null
+          }}
+        </p>
+          <button
+            [hidden]="itemSelected != ''"
+            class="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            type="button"
+            [routerLink]="['/projects/new-project']"
+            routerLinkActive="router-link-active"
+            (click)="toggleModal()"
+          >
+            ساخت پروژه جدید
+          </button>
+        </div>
+        <!--footer-->
+        <div
+          class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b"
+        >
+          <button
+            class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            type="button"
+            (click)="toggleModal()"
+          >
+            متوجه شدم
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
