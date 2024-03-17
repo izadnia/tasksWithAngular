@@ -30,7 +30,7 @@
                 <div>
                   <button
                   class="mx-1 p-2 text-emerald-600 border border-emerald-600 rounded-md hover:bg-emerald-600 hover:text-white"
-                  [routerLink]="['/tasks/', item.taskKey]"
+                  [routerLink]="['/tasks/task/', item.taskKey]"
                   routerLinkActive="router-link-active"
                 >
                   جزئیات
@@ -56,7 +56,7 @@
                   {{ item[key] == false ? "در جریان" : "خاتمه یافته" }}
                 </ng-container>
                 <ng-template #elseOfFinish >
-                  <div [routerLink]="['/tasks/', item.taskKey]" class=" cursor-pointer font-bold">
+                  <div [routerLink]="['/tasks/task/', item.taskKey]" class=" cursor-pointer font-bold">
                     {{ item[key] }}
                   </div>
                   
