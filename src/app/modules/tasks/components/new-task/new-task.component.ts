@@ -13,8 +13,8 @@ export class NewTaskComponent {
   constructor(private router: Router) {}
   stepNumber: number = 0;
   itemSelected: any = '';
-  actorSelected : any = '';
-  taskSelected : string = '';
+  actorSelected: any = '';
+  taskSelected: string = '';
   showModal = false;
 
   toggleModal() {
@@ -24,17 +24,17 @@ export class NewTaskComponent {
   onProjectSelected(selectedProject: any) {
     this.itemSelected = selectedProject;
   }
-  onActorSelected(selectedActor : any){
-    this.actorSelected = selectedActor
+  onActorSelected(selectedActor: any) {
+    this.actorSelected = selectedActor;
   }
-  onTaskSelected(selectedTask : any){
-    this.taskSelected = selectedTask
+  onTaskSelected(selectedTask: any) {
+    this.taskSelected = selectedTask;
   }
   nextStep() {
     if (
       (this.itemSelected == '' && this.stepNumber == 1) ||
-      (this.actorSelected == '' && this.stepNumber == 2 ) ||
-      (this.taskSelected == ''  && this.stepNumber == 3)
+      (this.actorSelected == '' && this.stepNumber == 2) ||
+      (this.taskSelected == '' && this.stepNumber == 3)
     ) {
       this.toggleModal();
     } else {
@@ -42,6 +42,15 @@ export class NewTaskComponent {
     }
   }
   prevStep() {
-    this.stepNumber = this.stepNumber - 1;
+    if (this.stepNumber == 2) {
+      this.itemSelected = '';
+      this.stepNumber = this.stepNumber - 1;
+    } else if (this.stepNumber == 3) {
+      this.actorSelected = '';
+      this.taskSelected = '';
+      this.stepNumber = this.stepNumber - 1;
+    } else {
+      this.stepNumber = this.stepNumber - 1;
+    }
   }
 }
