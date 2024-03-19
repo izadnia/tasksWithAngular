@@ -78,15 +78,6 @@ routToProject(){
       });
     } else {
       this.toggleModal();
-      // this.titleCheckFlag == false
-      //   ? alert('وارد کردن نام پروژه الزامی است')
-      //   : null;
-      // this.initDateCheckFlag == false
-      //   ? alert('وارد کردن زمان شروع پروژه الزامی است')
-      //   : null;
-      // this.finishDateCheckFlag == false
-      //   ? alert('وارد کردن زمان خاتمه پروژه الزامی است')
-      //   : null;
     }
   }
 }

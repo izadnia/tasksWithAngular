@@ -119,7 +119,8 @@
         <div
           class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t"
         >
-          <h3 class="text-5xl text-red-800 font-semibold">خطا!</h3>
+          <h3 [hidden]="hasBeenSent" class="text-5xl text-red-800 font-semibold">خطا!</h3>
+          <h3 [hidden]="!hasBeenSent" class="text-5xl text-green-800 font-semibold">تبریک</h3>
 
           <button
             class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -137,13 +138,13 @@
           <p
             class="my-4 text-blueGray-500 text-lg text-red-700 leading-relaxed"
           >
-            {{ itemSelected == "" ? "*باید یک پروژه را انتخاب کنید" : null }}
+            {{ itemSelected == "" && hasBeenSent == false ? "*باید یک پروژه را انتخاب کنید" : null }}
           </p>
           <p
             class="my-4 text-blueGray-500 text-md text-gray-700 leading-relaxed"
           >
             {{
-              itemSelected == ""
+              itemSelected == "" && hasBeenSent == false
                 ? "اگر در لیست پروژه مد نظر نیست، یکی بسازید"
                 : null
             }}
@@ -166,6 +167,15 @@
                 : null
             }}
           </p>
+          <p
+          class="my-4 text-blueGray-500 text-md text-blue-700 leading-relaxed"
+        >
+          {{
+            this.hasBeenSent == true
+              ? "تسک جدید اضافه شد"
+              : null
+          }}
+        </p>
           <button
             [hidden]="itemSelected != ''"
             class="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -184,10 +194,19 @@
           <button
             class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
             type="button"
-            (click)="toggleModal()"
+            (click)="toggleModal() "
+
           >
             متوجه شدم
           </button>
+          <button
+          [hidden]="!hasBeenSent"
+           class="bg-sky-500   text-white active:bg-sky-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+           type="button"
+           (click)="routToTasks()"
+         >
+        تسک ها 
+         </button>
         </div>
       </div>
     </div>

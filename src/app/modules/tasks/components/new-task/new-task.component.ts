@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Projects } from '../../../../models/Projects';
 import { ProjectTestService } from '../../../../services/project-test.service';
 
@@ -9,16 +10,26 @@ import { ProjectTestService } from '../../../../services/project-test.service';
 })
 export class NewTaskComponent {
   fullUrl: any;
-  constructor(private projectService: ProjectTestService) {}
+  constructor(
+    private projectService: ProjectTestService,
+    private router: Router
+  ) {}
   stepNumber: number = 0;
   itemSelected: any = '';
   actorSelected: any = '';
   taskSelected: string = '';
   projectSelected: Projects[] = [];
-  showModal = false;
+  showModal: boolean = false;
+  hasBeenSent: boolean = false;
 
   toggleModal() {
     this.showModal = !this.showModal;
+    if(this.hasBeenSent){
+      this.itemSelected = '';
+      this.actorSelected = '';
+      this.taskSelected = '';
+      this.stepNumber = 0;
+    }
   }
 
   onProjectSelected(selectedProject: any) {
@@ -39,9 +50,16 @@ export class NewTaskComponent {
     };
     this.projectService.postNewTask(data).subscribe((m) => {
       if (m) {
-        alert('success');
+        this.hasBeenSent = true;
+        this.toggleModal();
+      } else {
+        this.toggleModal();
       }
     });
+  }
+
+  routToTasks() {
+    this.router.navigate(['tasks']);
   }
   nextStep() {
     if (
