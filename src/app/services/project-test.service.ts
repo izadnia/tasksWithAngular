@@ -9,18 +9,6 @@ import { Tasks } from '../models/Tasks';
 export class ProjectTestService {
   selectedProject: any;
   selectedTask: any;
-
-  getprojectDetail(taskKey: string): Observable<any> {
-    this.selectedProject = this.projectsList.filter(
-      (m) => m.taskKey == taskKey
-    )[0];
-    this.selectedTask = this.tasksList.filter((m) => m.taskKey == taskKey);
-    let array: any[] = [];
-    array.push(this.selectedProject, this.selectedTask);
-    return of(array);
-  }
-  constructor() {}
-
   projectsList: Projects[] = [
     {
       id: 1,
@@ -81,6 +69,22 @@ export class ProjectTestService {
       describtion: 'منتظر جواب بقیه هستم',
     },
   ];
+
+  postNewTask(data : Tasks) : Observable<any>{
+    this.tasksList.push(data)
+    return of (true);
+  }
+
+  getprojectDetail(taskKey: string): Observable<any> {
+    this.selectedProject = this.projectsList.filter(
+      (m) => m.taskKey == taskKey
+    )[0];
+    this.selectedTask = this.tasksList.filter((m) => m.taskKey == taskKey);
+    let array: any[] = [];
+    array.push(this.selectedProject, this.selectedTask);
+    return of(array);
+  }
+ 
   getProjectsList(): Observable<Projects[]> {
     return of(this.projectsList);
   }
@@ -98,7 +102,6 @@ export class ProjectTestService {
     this.projectsList.push(data);
     return of(data);
   }
-
   deleteSingleProject(data: string): Observable<Projects[]> {
     this.deleteSingleTask(data);
     let i = this.projectsList.findIndex((m) => m.taskKey === data);

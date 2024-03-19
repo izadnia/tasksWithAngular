@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
 import { Projects } from '../../../../models/Projects';
 import { ProjectTestService } from '../../../../services/project-test.service';
 
@@ -10,11 +9,12 @@ import { ProjectTestService } from '../../../../services/project-test.service';
 })
 export class NewTaskComponent {
   fullUrl: any;
-  constructor(private router: Router) {}
+  constructor(private projectService: ProjectTestService) {}
   stepNumber: number = 0;
   itemSelected: any = '';
   actorSelected: any = '';
   taskSelected: string = '';
+  projectSelected: Projects[] = [];
   showModal = false;
 
   toggleModal() {
@@ -30,6 +30,19 @@ export class NewTaskComponent {
   onTaskSelected(selectedTask: any) {
     this.taskSelected = selectedTask;
   }
+  onSubmit() {
+    let data = {
+      title: this.itemSelected,
+      taskKey: this.projectSelected[0].taskKey,
+      actor: this.actorSelected,
+      describtion: this.taskSelected,
+    };
+    this.projectService.postNewTask(data).subscribe((m) => {
+      if (m) {
+        alert('success');
+      }
+    });
+  }
   nextStep() {
     if (
       (this.itemSelected == '' && this.stepNumber == 1) ||
@@ -38,7 +51,14 @@ export class NewTaskComponent {
     ) {
       this.toggleModal();
     } else {
-      this.stepNumber = this.stepNumber + 1;
+      if (this.stepNumber == 1) {
+        this.projectService.getProjectsList().subscribe((m) => {
+          this.projectSelected = m.filter((i) => i.title == this.itemSelected);
+        });
+        this.stepNumber = this.stepNumber + 1;
+      } else {
+        this.stepNumber = this.stepNumber + 1;
+      }
     }
   }
   prevStep() {
