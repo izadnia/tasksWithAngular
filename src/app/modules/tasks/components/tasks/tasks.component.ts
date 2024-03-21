@@ -22,8 +22,10 @@ export class TasksComponent {
 
 
 deleteTask(data: string) {
+     console.log(this.taskList.filter((m:any) => m.taskKey == data)[]) 
   let selectedTask = this.taskList.filter((m:any) => m.taskKey == data)[0]
     .title;
+
   if (
     confirm(
       '  آیا از حذف تسک :  ' +
