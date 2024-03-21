@@ -10,12 +10,18 @@ export class ListsHandlersComponent {
   @Input() incomeList: any[] = [];
   @Output() deletekeyEmitted = new EventEmitter<string>();
 
+  translationMap: any = {
+    title: 'عنوان',
+    taskKey: 'اقدام',
+    actor: 'اقدام کننده',
+    describtion :'توضیحات'
+  };
+
   getColumnKeys(): string[] {
     if (this.incomeList.length === 0) {
       return [];
     }
-    // Assume all incomeList have the same keys
-    return Object.keys(this.incomeList[0]);
+    return Object.keys(this.translationMap);
   }
   formatDate(date: number | null): Date | null {
     if (date === null) {
@@ -23,6 +29,10 @@ export class ListsHandlersComponent {
     }
     return new Date(date);
   }
+  deleteProject(data : string){
+    this.deletekeyEmitted.emit(data); 
+  }
+
   deleteTask(data : string){
     this.deletekeyEmitted.emit(data); 
   }

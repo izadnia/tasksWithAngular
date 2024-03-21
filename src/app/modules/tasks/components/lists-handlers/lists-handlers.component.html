@@ -6,59 +6,72 @@
           *ngFor="let key of getColumnKeys()"
           class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-right"
         >
-          {{ key }}
+          {{ translationMap[key] }}
         </th>
       </tr>
     </thead>
 
     <tbody>
-      <tr class="border hover:bg-fuchsia-100" *ngFor="let item of incomeList">
-        <td
-          *ngFor="let key of getColumnKeys()"
-          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+      <ng-container *ngFor="let item of incomeList">
+        <tr
+          class="border hover:bg-fuchsia-100"
+          routerLinkActive="router-link-active "
         >
-          <ng-container
-            *ngIf="key === 'initDate' || key === 'finishDate'; else defaultCell"
+          <td
+            *ngFor="let key of getColumnKeys()"
+            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
           >
-            {{ item[key] | persianDate }}
-          </ng-container>
-          <ng-template #defaultCell>
-            <ng-container *ngIf="key == 'taskKey'; else elseTemplate2">
-              <div>
-                <button
-                  class="mx-1 p-2 text-emerald-600 border border-emerald-600 rounded-md hover:bg-emerald-600 hover:text-white"
-                  [routerLink]="['task/', item.taskKey]"
-                  routerLinkActive="router-link-active"
-                >
-                  جزئیات
-                </button>
-                <button
-                  class="mx-1 p-2 text-cyan-700 border border-cyan-700 rounded-md hover:bg-cyan-700 hover:text-white"
-                  [routerLink]="['edit/', item.taskKey]"
-                  routerLinkActive="router-link-active"
-                >
-                  ویرایش
-                </button>
-                <button
-                  class="mx-1 p-2 text-red-700 border border-red-700 rounded-md hover:bg-red-700 hover:text-white"
-                  routerLinkActive="router-link-active"
-                  (click)="deleteTask(item[key])"
-                >
-                  حذف
-                </button>
-              </div>
+            <ng-container
+              *ngIf="
+                key === 'initDate' || key === 'finishDate';
+                else elseOfDate
+              "
+            >
+              {{ item[key] }}
             </ng-container>
-            <ng-template #elseTemplate2>
-              <div
-                class="cursor-pointer"
-                [routerLink]="['task/', item.taskKey]"
-              >
-                {{ item[key] }}
-              </div>
+            <ng-template #elseOfDate>
+              <ng-container *ngIf="key === 'taskKey'; else elseOfTaskKey">
+                <div>
+                  <button
+                    class="mx-1 p-2 text-emerald-600 border border-emerald-600 rounded-md hover:bg-emerald-600 hover:text-white"
+                    [routerLink]="['/tasks/task/', item.taskKey]"
+                    routerLinkActive="router-link-active"
+                  >
+                    جزئیات
+                  </button>
+                  <button
+                    class="mx-1 p-2 text-cyan-700 border border-cyan-700 rounded-md hover:bg-cyan-700 hover:text-white"
+                    [routerLink]="['/tasks/edit/', item[key]]"
+                    routerLinkActive="router-link-active"
+                  >
+                    ویرایش
+                  </button>
+                  <button
+                    class="mx-1 p-2 text-red-700 border border-red-700 rounded-md hover:bg-red-700 hover:text-white"
+                    (click)="deleteProject(item[key])"
+                    routerLinkActive="router-link-active"
+                  >
+                    حذف
+                  </button>
+                </div>
+              </ng-container>
+              <ng-template #elseOfTaskKey>
+                <ng-container *ngIf="key === 'finish'; else elseOfFinish">
+                  {{ item[key] == false ? "در جریان" : "خاتمه یافته" }}
+                </ng-container>
+                <ng-template #elseOfFinish>
+                  <div
+                    [routerLink]="['/tasks/task/', item.taskKey]"
+                    class="cursor-pointer font-bold"
+                  >
+                    {{ item[key] }}
+                  </div>
+                </ng-template>
+              </ng-template>
             </ng-template>
-          </ng-template>
-        </td>
-      </tr>
+          </td>
+        </tr>
+      </ng-container>
     </tbody>
   </table>
 </div>
