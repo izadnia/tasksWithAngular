@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Tasks } from '../../../../models/Tasks';
 import { PersianDatePipe } from '../../../projects/pipes/persian-date.pipe';
 
 @Component({
@@ -8,7 +9,7 @@ import { PersianDatePipe } from '../../../projects/pipes/persian-date.pipe';
 })
 export class ListsHandlersComponent {
   @Input() incomeList: any[] = [];
-  @Output() deletekeyEmitted = new EventEmitter<string>();
+  @Output() deletekeyEmitted = new EventEmitter<any>();
 
   translationMap: any = {
     title: 'عنوان',
@@ -29,11 +30,8 @@ export class ListsHandlersComponent {
     }
     return new Date(date);
   }
-  deleteProject(data : string){
-    this.deletekeyEmitted.emit(data); 
-  }
 
-  deleteTask(data : string){
+  deleteTask(data : Tasks){
     this.deletekeyEmitted.emit(data); 
   }
 }

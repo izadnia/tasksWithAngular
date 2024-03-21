@@ -21,10 +21,15 @@ export class TasksComponent {
 }
 
 
-deleteTask(data: string) {
-     console.log(this.taskList.filter((m:any) => m.taskKey == data)[]) 
-  let selectedTask = this.taskList.filter((m:any) => m.taskKey == data)[0]
-    .title;
+deleteTask(data: Tasks) {
+
+  let selectedTask =     
+  this.taskList.filter(
+    (m: any) =>
+      m.taskKey == data.taskKey &&
+      m.actor == data.actor &&
+      m.describtion == data.describtion
+  )[0].title;
 
   if (
     confirm(
@@ -38,7 +43,6 @@ deleteTask(data: string) {
     this.projectService
       .deleteSingleTask(data)
       .subscribe((m) => this.taskList = m);
-      console.log(this.taskList)
     return alert(
       ' تسک :  ' +
         selectedTask +

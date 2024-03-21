@@ -70,9 +70,9 @@ export class ProjectTestService {
     },
   ];
 
-  postNewTask(data : Tasks) : Observable<any>{
-    this.tasksList.push(data)
-    return of (true);
+  postNewTask(data: Tasks): Observable<any> {
+    this.tasksList.push(data);
+    return of(true);
   }
 
   getprojectDetail(taskKey: string): Observable<any> {
@@ -84,7 +84,7 @@ export class ProjectTestService {
     array.push(this.selectedProject, this.selectedTask);
     return of(array);
   }
- 
+
   getProjectsList(): Observable<Projects[]> {
     return of(this.projectsList);
   }
@@ -103,13 +103,20 @@ export class ProjectTestService {
     return of(data);
   }
   deleteSingleProject(data: string): Observable<Projects[]> {
-    this.deleteSingleTask(data);
+    let j = this.tasksList.filter((m) => m.taskKey == data)[0];
+    this.deleteSingleTask(j);
     let i = this.projectsList.findIndex((m) => m.taskKey === data);
     this.projectsList.splice(i, 1);
     return of(this.projectsList);
   }
-  deleteSingleTask(data: string): Observable<Tasks[]> {
-    let i = this.tasksList.findIndex((m) => m.taskKey === data);
+  deleteSingleTask(data: Tasks): Observable<Tasks[]> {
+    let i = this.tasksList.findIndex(
+      (m) =>
+        m.title == data.title &&
+        m.taskKey == data.taskKey &&
+        m.actor == data.actor &&
+        m.describtion == data.describtion
+    );
     this.tasksList.splice(i, 1);
     return of(this.tasksList);
   }
