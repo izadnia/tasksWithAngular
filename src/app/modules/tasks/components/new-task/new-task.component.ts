@@ -82,6 +82,7 @@ export class NewTaskComponent {
   prevStep() {
     if (this.stepNumber == 2) {
       this.itemSelected = '';
+      this.actorSelected = '';
       this.stepNumber = this.stepNumber - 1;
     } else if (this.stepNumber == 3) {
       this.actorSelected = '';
