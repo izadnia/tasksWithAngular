@@ -78,6 +78,11 @@ export class CalendarComponent implements OnInit {
     }
     this.jalaliCal();
   }
+  today(){
+    this.month = this.jalaliDate.jMonth();
+    this.year = this.jalaliDate.jYear();
+    this.jalaliCal();
+  }
   prevmonth() {
     if (this.month == 0) {
       this.month = 11;

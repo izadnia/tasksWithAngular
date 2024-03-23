@@ -1,9 +1,13 @@
 
-<button class="border py-2 m-2 px-4 rounded bg-blue-400 text-white" (click)="prevmonth()">ماه قبل</button>
-<button class="border py-2 m-2 px-4 rounded bg-blue-400 text-white" (click)="nextmonth()">ماه بعد</button>
+
 <div>
 <p class="text-3xl p-4"> {{monthName}}  {{year}} </p>
 
+</div>
+<div class="max-w-2xl">
+  <button class="border py-2 m-2 px-4 rounded rounded-r-full bg-cyan-700 text-white hover:bg-cyan-800" (click)="prevmonth()">ماه قبل</button>
+  <button class="border py-2 m-2 px-4 rounded  bg-fuchsia-700 text-white hover:bg-fuchsia-800" (click)="today()">این ماه</button>
+  <button class="border py-2 m-2 px-4 rounded rounded-l-full bg-cyan-700 text-white hover:bg-cyan-800" (click)="nextmonth()">ماه بعد</button>
 </div>
 <table class="max-w-2xl">
   <tr>
@@ -48,4 +52,5 @@
       </ng-container>
     </ng-template>
   </tr>
+  
 </table>
