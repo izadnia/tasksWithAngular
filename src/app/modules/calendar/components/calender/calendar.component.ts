@@ -14,23 +14,31 @@ export class CalendarComponent implements OnInit {
   jalaliDate = moment(); // Creating a Jalali-Moment object
   month = this.jalaliDate.jMonth();
   year = this.jalaliDate.jYear();
-
+  monthNames = [
+    'فروردین',
+    'اردیبهشت',
+    'خرداد',
+    'تیر',
+    'مرداد',
+    'شهریور',
+    'مهر',
+    'آبان',
+    'آذر',
+    'دی',
+    'بهمن',
+    'اسفند',
+  ];
+  monthName = ''
   ngOnInit(): void {
     this.jalaliCal();
   }
   jalaliCal() {
-    console.log('Month:', this.month); // Log the month to see if it's correct
-    console.log('Year:', this.year); // Log the year to see if it's correct
-
     const startDate = moment.jDaysInMonth(this.year, this.month); // Getting the total number of days in the month
-    console.log('Start Date:', startDate); // Log the start date to see if it's correct
-
     // Start from the first day of the month
     let currentDate = moment(startDate)
       .jYear(this.year)
       .jMonth(this.month)
       .jDate(1);
-    console.log('Current Date:', currentDate); // Log the current date to see if it's correct
 
     let weeks: any[] = [];
     let currentWeek: any[] = [];
@@ -51,10 +59,12 @@ export class CalendarComponent implements OnInit {
       weeks.push(currentWeek);
     }
 
-    console.log('Calendar:', weeks); // Log the calendar to see if it's populated correctly
+    // console.log('Calendar:', weeks); // Log the calendar to see if it's populated correctly
 
     this.calendar = weeks;
+    this.monthName = this.monthNames[this.month];
   }
+  monthTranslater() {}
 
   getEmptyCells(count: number): any[] {
     return Array(count).fill(null);

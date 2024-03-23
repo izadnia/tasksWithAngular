@@ -1,12 +1,11 @@
-<button class="border py-2 my-2 px-4 rounded bg-blue-400 text-white" (click)="nextmonth()">ماه بعد</button>
-<button class="border py-2 my-2 px-4 rounded bg-blue-400 text-white" (click)="prevmonth()">ماه قبل</button>
+
+<button class="border py-2 m-2 px-4 rounded bg-blue-400 text-white" (click)="prevmonth()">ماه قبل</button>
+<button class="border py-2 m-2 px-4 rounded bg-blue-400 text-white" (click)="nextmonth()">ماه بعد</button>
 <div>
-  <h2 class="text-2xl">تاریخ : </h2>
-  <p>{{month}} : ماه</p>
-  <p>{{year}} : سال</p>
+<p class="text-3xl p-4"> {{monthName}}  {{year}} </p>
 
 </div>
-<table>
+<table class="max-w-2xl">
   <tr>
     <th>شنبه</th>
     <th>یکشنبه</th>
