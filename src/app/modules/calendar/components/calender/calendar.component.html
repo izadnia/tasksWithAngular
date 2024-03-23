@@ -1,0 +1,34 @@
+
+<button (click)="nextmonth()">
+  month
+</button>
+
+
+
+<table>
+  <tr>
+    <th>شنبه</th>
+    <th>یکشنبه</th>
+    <th>دوشنبه</th>
+    <th>سه سنبه</th>
+    <th>چهارشنبه</th>
+    <th>پنج شنبه</th>
+    <th>جمعه</th>
+  </tr>
+
+  <tr *ngFor="let week of calendar">
+    <ng-container *ngIf="week.length < 7; else elseTemplate">
+      <ng-container *ngFor="let _ of getEmptyCells(7 - week.length)">
+        <td></td>
+      </ng-container>
+      <ng-container *ngFor="let day of week">
+        <td>{{ day.format("jD") }}</td>
+      </ng-container>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <ng-container *ngFor="let day of week">
+        <td>{{ day.format("jD") }}</td>
+      </ng-container>
+    </ng-template>
+  </tr>
+</table>
