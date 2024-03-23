@@ -5,52 +5,55 @@
 
 </div>
 <div class="max-w-2xl">
-  <button class="border py-2 m-2 px-4 rounded rounded-r-full bg-cyan-700 text-white hover:bg-cyan-800" (click)="prevmonth()">ماه قبل</button>
-  <button class="border py-2 m-2 px-4 rounded  bg-fuchsia-700 text-white hover:bg-fuchsia-800" (click)="today()">این ماه</button>
-  <button class="border py-2 m-2 px-4 rounded rounded-l-full bg-cyan-700 text-white hover:bg-cyan-800" (click)="nextmonth()">ماه بعد</button>
+  <button class="border py-2 my-4 px-4 rounded rounded-r-full bg-cyan-700 text-white hover:bg-cyan-800" (click)="prevmonth()">ماه قبل</button>
+  <button class="border py-2 my-4 px-4 rounded  bg-fuchsia-700 text-white hover:bg-fuchsia-800" (click)="today()">این ماه</button>
+  <button class="border py-2 my-4 px-4 rounded rounded-l-full bg-cyan-700 text-white hover:bg-cyan-800" (click)="nextmonth()">ماه بعد</button>
 </div>
-<table class="max-w-2xl">
-  <tr>
-    <th>شنبه</th>
-    <th>یکشنبه</th>
-    <th>دوشنبه</th>
-    <th>سه سنبه</th>
-    <th>چهارشنبه</th>
-    <th>پنج شنبه</th>
-    <th>جمعه</th>
-  </tr>
-
-  <tr *ngFor="let week of calendar; let i = index">
-    <ng-container *ngIf="week.length < 7; else fullWeek">
-      <ng-container *ngIf="i == 0; else LastWeek">
-        <ng-container *ngFor="let _ of getEmptyCells(7 - week.length)">
-          <td></td>
+<div class="max-w-2xl">
+  <table >
+    <tr>
+      <th>شنبه</th>
+      <th>یکشنبه</th>
+      <th>دوشنبه</th>
+      <th>سه سنبه</th>
+      <th>چهارشنبه</th>
+      <th>پنج شنبه</th>
+      <th>جمعه</th>
+    </tr>
+  
+    <tr *ngFor="let week of calendar; let i = index">
+      <ng-container *ngIf="week.length < 7; else fullWeek">
+        <ng-container *ngIf="i == 0; else LastWeek">
+          <ng-container *ngFor="let _ of getEmptyCells(7 - week.length)">
+            <td></td>
+          </ng-container>
+          <ng-container *ngFor="let day of week">
+            <td [ngClass]="{ 'text-red-600': day.jDay() === 6 }">
+              {{ day.format("jD") }}
+            </td>
+          </ng-container>
         </ng-container>
-        <ng-container *ngFor="let day of week">
-          <td [ngClass]="{ 'text-red-600': day.jDay() === 6 }">
-            {{ day.format("jD") }}
-          </td>
-        </ng-container>
+        <ng-template #LastWeek>
+          <ng-container *ngFor="let day of week">
+            <td [ngClass]="{ 'text-red-600': day.jDay() === 6 }">
+              {{ day.format("jD") }}
+            </td>
+          </ng-container>
+          <ng-container *ngFor="let _ of getEmptyCells(7 - week.length)">
+            <td></td>
+          </ng-container>
+        </ng-template>
       </ng-container>
-      <ng-template #LastWeek>
+  
+      <ng-template #fullWeek>
         <ng-container *ngFor="let day of week">
           <td [ngClass]="{ 'text-red-600': day.jDay() === 6 }">
             {{ day.format("jD") }}
           </td>
-        </ng-container>
-        <ng-container *ngFor="let _ of getEmptyCells(7 - week.length)">
-          <td></td>
         </ng-container>
       </ng-template>
-    </ng-container>
-
-    <ng-template #fullWeek>
-      <ng-container *ngFor="let day of week">
-        <td [ngClass]="{ 'text-red-600': day.jDay() === 6 }">
-          {{ day.format("jD") }}
-        </td>
-      </ng-container>
-    </ng-template>
-  </tr>
+    </tr>
+    
+  </table>
   
-</table>
+</div>
