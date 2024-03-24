@@ -1,4 +1,5 @@
 
+<!-- {{projectsList[0]| json}} -->
 
 <div>
 <p class="text-3xl p-4"> {{monthName}}  {{year}} </p>
@@ -15,45 +16,21 @@
       <th>شنبه</th>
       <th>یکشنبه</th>
       <th>دوشنبه</th>
-      <th>سه سنبه</th>
+      <th>سه شنبه</th>
       <th>چهارشنبه</th>
       <th>پنج شنبه</th>
       <th>جمعه</th>
     </tr>
-  
     <tr *ngFor="let week of calendar; let i = index">
-      <ng-container *ngIf="week.length < 7; else fullWeek">
-        <ng-container *ngIf="i == 0; else LastWeek">
-          <ng-container *ngFor="let _ of getEmptyCells(7 - week.length)">
-            <td></td>
-          </ng-container>
-          <ng-container *ngFor="let day of week">
-            <td [ngClass]="{ 'text-red-600': day.jDay() === 6 }">
-              {{ day.format("jD") }}
-            </td>
-          </ng-container>
-        </ng-container>
-        <ng-template #LastWeek>
-          <ng-container *ngFor="let day of week">
-            <td [ngClass]="{ 'text-red-600': day.jDay() === 6 }">
-              {{ day.format("jD") }}
-            </td>
-          </ng-container>
-          <ng-container *ngFor="let _ of getEmptyCells(7 - week.length)">
-            <td></td>
-          </ng-container>
-        </ng-template>
-      </ng-container>
-  
-      <ng-template #fullWeek>
         <ng-container *ngFor="let day of week">
-          <td [ngClass]="{ 'text-red-600': day.jDay() === 6 }">
-            {{ day.format("jD") }}
+          <td [ngClass]="{ 'text-red-600': false}">
+            <span  
+            [ngClass]="{'hidden': day.events.length == 0 }"
+            class="inline-flex items-center rounded-full bg-red-800 px-2 py-1 text-xs font-bold text-white ring-1 ring-inset">1</span>
+            {{ day.dayString }}
+            
           </td>
         </ng-container>
-      </ng-template>
     </tr>
-    
   </table>
-  
 </div>

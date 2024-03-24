@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import moment from 'jalali-moment'; // Importing Jalali-Moment correctly
+import { Projects } from '../../../../models/Projects';
 import { CalendarService } from '../../../../services/calendar.service';
+import { ProjectTestService } from '../../../../services/project-test.service';
 
 @Component({
   selector: 'app-calendar',
@@ -8,17 +10,25 @@ import { CalendarService } from '../../../../services/calendar.service';
   styleUrls: ['./calendar.component.scss'],
 })
 export class CalendarComponent implements OnInit {
-  constructor(private calendarService: CalendarService) {}
-
+  constructor(
+    private calendarService: CalendarService,
+    private projectService: ProjectTestService
+  ) {}
+  projectsList: Projects[] = [];
   calendar: any[][] = [];
   year: number = 0;
   monthName: string = '';
 
   ngOnInit(): void {
-    this.jalaliCal();
+    
+    this.projectService
+      .getProjectsList()
+      .subscribe((m) => (this.projectsList = m));
+      this.jalaliCal();
   }
+
   jalaliCal() {
-    this.calendarService.jalaliCal();
+    this.calendarService.jalaliCal(this.projectsList);
     this.calendar = this.calendarService.calendar;
     this.year = this.calendarService.year;
     this.monthName = this.calendarService.monthName;
@@ -29,15 +39,15 @@ export class CalendarComponent implements OnInit {
     return Array(count).fill(null);
   }
   nextmonth() {
-    this.calendarService.nextmonth();
+    this.calendarService.nextmonth(this.projectsList);
     this.jalaliCal();
   }
   today() {
-    this.calendarService.today();
+    this.calendarService.today(this.projectsList);
     this.jalaliCal();
   }
   prevmonth() {
-    this.calendarService.prevmonth();
+    this.calendarService.prevmonth(this.projectsList);
     this.jalaliCal();
   }
 }
