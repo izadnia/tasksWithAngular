@@ -18,39 +18,41 @@ export class CalendarComponent implements OnInit {
   calendar: any[][] = [];
   year: number = 0;
   monthName: string = '';
-  modalIsOpen : boolean = false
-  modalFeed :  Projects[] = [{
-    id: 0,
-    title: '',
-    initDate: '',
-    finishDate: '',
-    taskKey: '',
-    finish: false,
-  }]
+  modalIsOpen: boolean = false;
+  modalFeed: Projects[] = [
+    {
+      id: 0,
+      title: '',
+      initDate: '',
+      finishDate: '',
+      taskKey: '',
+      finish: false,
+    },
+  ];
 
   ngOnInit(): void {
-    
     this.projectService
       .getProjectsList()
       .subscribe((m) => (this.projectsList = m));
-      this.jalaliCal();
+    this.jalaliCal();
   }
-  toggleModal(data : any){
-      if(data.length > 0){
-        this.modalIsOpen = true
-        this.modalFeed  = data
-      }else{
-        this.modalIsOpen = false
-        this.modalFeed  = [{
+  toggleModal(data: any) {
+    if (data.length > 0) {
+      this.modalIsOpen = true;
+      this.modalFeed = data;
+    } else {
+      this.modalIsOpen = false;
+      this.modalFeed = [
+        {
           id: 0,
           title: '',
           initDate: '',
           finishDate: '',
           taskKey: '',
           finish: false,
-        }]
-      }
-      
+        },
+      ];
+    }
   }
 
   jalaliCal() {
