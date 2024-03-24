@@ -49,8 +49,30 @@
       </tr>
     </table>
   </div>
-  <div class="m-auto max-w-xl">
-    {{ modalFeed | json }}
+  <div class="mx-auto max-w-xl">
+    <ng-container *ngIf="modalIsOpen; else elseTemplate">
+      <div class="m-2 p-2 flex justify-between" *ngFor="let item of modalFeed">
+        <div>
+          <p class="m-2 p-2 text-xl">عنوان :{{ item.title }}</p>
+          <button
+                    class="p-2 mr-20 text-emerald-600 border mx-auto border-emerald-600 rounded-md hover:bg-emerald-600 hover:text-white"
+                    [routerLink]="['/tasks/task/', item.taskKey]"
+                    routerLinkActive="router-link-active"
+                  >
+                    جزئیات
+                  </button>
+        </div>
+        <div>
+          <p class="m-2 p-2 text-xl">تاریخ شروع : {{ item.initDate }}</p>
+          <p class="m-2 p-2 text-xl">تاریخ پایان : {{ item.finishDate }}</p>
+        </div>
+      </div>
+    </ng-container>
 
+    <ng-template #elseTemplate>
+      <div class="m-2 p-2">
+        <p class="m-2 p-2 text-lg">جزئیات رویداد های هفتگی</p>
+      </div>
+    </ng-template>
   </div>
 </div>

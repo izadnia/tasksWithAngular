@@ -18,7 +18,15 @@ export class CalendarComponent implements OnInit {
   calendar: any[][] = [];
   year: number = 0;
   monthName: string = '';
-  modalFeed :  [{}] = [{}]
+  modalIsOpen : boolean = false
+  modalFeed :  Projects[] = [{
+    id: 0,
+    title: '',
+    initDate: '',
+    finishDate: '',
+    taskKey: '',
+    finish: false,
+  }]
 
   ngOnInit(): void {
     
@@ -29,9 +37,18 @@ export class CalendarComponent implements OnInit {
   }
   toggleModal(data : any){
       if(data.length > 0){
+        this.modalIsOpen = true
         this.modalFeed  = data
       }else{
-        this.modalFeed  = [{}]
+        this.modalIsOpen = false
+        this.modalFeed  = [{
+          id: 0,
+          title: '',
+          initDate: '',
+          finishDate: '',
+          taskKey: '',
+          finish: false,
+        }]
       }
       
   }
