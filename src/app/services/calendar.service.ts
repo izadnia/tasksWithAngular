@@ -36,16 +36,14 @@ export class CalendarService {
       .jMonth(this.month)
       .jDate(1);
 
-    let weeks: { dayString: string; events: any[] }[][] = [];
-    let currentWeek: { dayString: string; events: any[] }[] = [];
+    let weeks: { dayString: string; events: Projects[] }[][] = [];
+    let currentWeek: { dayString: string; events: Projects[] }[] = [];
 
     // Generate weeks until the end of the month
     while (currentDate.jMonth() === this.month) {
       const dayString = currentDate.format('jD'); // Format day of the month in Jalali calendar
       let event: any[] = [];
       for (let index = 0; index < data.length; index++) {
-        console.log(data[index].initDate.slice(8, 10));
-
         if (
           (+data[index].initDate.slice(0, 4) == this.year &&
             +data[index].initDate.slice(5, 7) == this.month + 1 &&
@@ -91,7 +89,7 @@ export class CalendarService {
     }
 
     // Log the calendar to see if it's populated correctly (optional)
-    console.log('Calendar:', weeks);
+    // console.log('Calendar:', weeks);
 
     this.calendar = weeks;
     this.monthName = this.monthNames[this.month];

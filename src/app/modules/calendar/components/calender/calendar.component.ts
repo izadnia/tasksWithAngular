@@ -18,6 +18,7 @@ export class CalendarComponent implements OnInit {
   calendar: any[][] = [];
   year: number = 0;
   monthName: string = '';
+  modalFeed :  any
 
   ngOnInit(): void {
     
@@ -25,6 +26,11 @@ export class CalendarComponent implements OnInit {
       .getProjectsList()
       .subscribe((m) => (this.projectsList = m));
       this.jalaliCal();
+  }
+  toggleModal(data : any){
+    console.log(data)
+      this.modalFeed  = data
+      
   }
 
   jalaliCal() {
