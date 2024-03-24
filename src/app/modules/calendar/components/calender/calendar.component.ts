@@ -18,7 +18,7 @@ export class CalendarComponent implements OnInit {
   calendar: any[][] = [];
   year: number = 0;
   monthName: string = '';
-  modalFeed :  any
+  modalFeed :  [{}] = [{}]
 
   ngOnInit(): void {
     
@@ -28,8 +28,11 @@ export class CalendarComponent implements OnInit {
       this.jalaliCal();
   }
   toggleModal(data : any){
-    console.log(data)
-      this.modalFeed  = data
+      if(data.length > 0){
+        this.modalFeed  = data
+      }else{
+        this.modalFeed  = [{}]
+      }
       
   }
 
