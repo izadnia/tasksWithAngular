@@ -1,5 +1,5 @@
 import { Conditional } from '@angular/compiler';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProjectTestService } from '../../../../services/project-test.service';
 import { PersianDatePipe } from '../../../projects/pipes/persian-date.pipe';
 
@@ -8,8 +8,12 @@ import { PersianDatePipe } from '../../../projects/pipes/persian-date.pipe';
   templateUrl: './lists-handlers.component.html',
   styleUrl: './lists-handlers.component.scss',
 })
-export class ListsHandlersComponent {
+export class ListsHandlersComponent implements OnInit{
   constructor(private projectService: ProjectTestService) {}
+  ngOnInit(): void {
+
+    
+  }
   @Input() incomeList: any[] = [];
   @Output() deletekeyEmitted = new EventEmitter<string>();
 
@@ -34,7 +38,7 @@ export class ListsHandlersComponent {
     }
     return new Date(date);
   }
-  deleteProject(data : string){
+  deleteProject(data : any){
     this.deletekeyEmitted.emit(data); 
   }
 }

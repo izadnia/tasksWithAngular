@@ -33,6 +33,7 @@ export class ProjectsComponent {
       this.projectService
         .deleteSingleProject(data)
         .subscribe((m) => (this.projectList = m));
+
       return alert(
         'پروژه ی ' +
           selectedProject +

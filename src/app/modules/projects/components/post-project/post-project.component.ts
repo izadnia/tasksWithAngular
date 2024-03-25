@@ -35,7 +35,6 @@ export class PostProjectComponent {
   }
 
   flagCheck() {
-    console.log(this.item.initDate.length);
     if (
       !this.initDateCheckFlag ||
       !this.finishDateCheckFlag ||
