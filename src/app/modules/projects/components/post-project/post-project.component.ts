@@ -81,6 +81,5 @@ routToProject(){
     } else {
       this.toggleModal();
     }
-    this.readyToSend = false
   }
 }
