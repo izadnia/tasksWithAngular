@@ -72,7 +72,7 @@ routToProject(){
       this.projectService.setNewProject(this.item).subscribe((Response) => {
         if (Response.title == this.item.title) {
           this.toggleModal();
-          
+          this.item = new Projects();
         } else alert('یه مشکلی پیش اومد');
       });
     } else {
