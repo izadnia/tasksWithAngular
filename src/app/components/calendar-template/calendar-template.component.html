@@ -61,8 +61,15 @@
         <th>جمعه</th>
       </tr>
       <tr *ngFor="let week of calendar; let i = index">
-        <ng-container *ngFor="let day of week">
-          <td (mouseenter)="toggleModal(day)">
+        <ng-container *ngFor="let day of week; let j = index">
+          <td (mouseenter)="toggleModal(day)"
+              (click)="dateHandler(day, i, j)"
+             
+              [ngClass]="{'bg-cyan-300': day.firstDate || day.secondDate }"
+
+          >
+          {{day.firstDate ? 'تاریخ اول' : null}}
+          {{day.secondDate ? 'تاریخ دوم' : null}}
             <!-- <span
               [ngClass]="{ hidden: day.events.length == 0 }"
               class="inline-flex items-center rounded-full bg-red-800 px-2 py-1 text-xs font-bold text-white ring-1 ring-inset"
