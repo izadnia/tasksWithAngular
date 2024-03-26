@@ -2,86 +2,94 @@
   <h1 class="m-2 p-2 text-3xl">پروژه ی جدید</h1>
   <div>
   </div>
-  <form
-    (ngSubmit)="onSubmit()"
-    class="bg-white max-w-72 shadow-md rounded px-8 pt-6 pb-8 mb-4"
-  >
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
-        عنوان پروژه
-      </label>
+<div class="flex ">
+  <form #myForm (ngSubmit)="onSubmit()" class="bg-white max-w-72 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+  <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
+      عنوان پروژه
+    </label>
+    <input
+     [ngClass]="{'border-red-700 border': !titleCheckFlag}"
+      [(ngModel)]="item.title"
+      name="title"
+      id="title"
+      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      type="text"
+      #titleModel="ngModel"
+    />
+    <div
+      [hidden]="titleModel.pristine || titleModel.value !== ''"
+      class="alert text-red-700"
+    >
+      نام پروژه نمی تواند خالی باشد
+    </div>
+  </div>
+  <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="initDate">
+      تاریخ شروع
+    </label>
+    <ng-persian-datepicker [dateInitValue]="false">
       <input
-       [ngClass]="{'border-red-700 border': !titleCheckFlag}"
-        [(ngModel)]="item.title"
-        name="title"
-        id="title"
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         type="text"
-        #titleModel="ngModel"
+        [ngClass]="{'border-red-700 border': !initDateCheckFlag}"
+        class="shadow cursor-pointer appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        [formControl]="initDateValue"
+        [(ngModel)]="item.initDate"
+        name="initDate"
+        id="initDate"
+        autocomplete="off"
+        placeholder="تاریخ شروع"
+        
       />
-      <div
-        [hidden]="titleModel.pristine || titleModel.value !== ''"
-        class="alert text-red-700"
-      >
-        نام پروژه نمی تواند خالی باشد
-      </div>
-    </div>
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="initDate">
-        تاریخ شروع
-      </label>
-      <ng-persian-datepicker [dateInitValue]="false">
-        <input
-          type="text"
-          [ngClass]="{'border-red-700 border': !initDateCheckFlag}"
-          class="shadow cursor-pointer appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          [formControl]="initDateValue"
-          [(ngModel)]="item.initDate"
-          name="initDate"
-          id="initDate"
-          autocomplete="off"
-          placeholder="تاریخ شروع"
-          
-        />
-      </ng-persian-datepicker>
-    </div>
+    </ng-persian-datepicker>
+  </div>
 
-    <div class="mb-4">
-      <label
-        class="block text-gray-700 text-sm font-bold mb-2"
-        for="finishDate"
-      >
-        تاریخ پایان
-      </label>
-      <ng-persian-datepicker [dateInitValue]="false">
-        <input
-          type="text"
-          [ngClass]="{'border-red-700 border': !finishDateCheckFlag}"
-          class="shadow cursor-pointer appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          [formControl]="finishDateValue"
-          [(ngModel)]="item.finishDate"
-          name="finishDate"
-          id="finishDate"
-          autocomplete="off"
-          placeholder="تاریخ پایان"
-          (ngModalChange)="flagCheck()"
-          
-          
+  <div class="mb-4">
+    <label
+      class="block text-gray-700 text-sm font-bold mb-2"
+      for="finishDate"
+    >
+      تاریخ پایان
+    </label>
+    <ng-persian-datepicker [dateInitValue]="false">
+      <input
+        type="text"
+        [ngClass]="{'border-red-700 border': !finishDateCheckFlag}"
+        class="shadow cursor-pointer appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        [formControl]="finishDateValue"
+        [(ngModel)]="item.finishDate"
+        name="finishDate"
+        id="finishDate"
+        autocomplete="off"
+        placeholder="تاریخ پایان"
+        (ngModalChange)="flagCheck()"
+        
+        
 
-        />
-      </ng-persian-datepicker>
-    </div>
+      />
+    </ng-persian-datepicker>
+  </div>
 
-    <div class="flex items-center justify-between">
-      <button
-        [hidden]=""
-        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        type="submit"
-      >
-        ایجاد پروژه جدید
-      </button>
-    </div>
-  </form>
+  <div class="flex items-center justify-between">
+    <button
+      [hidden]=""
+      class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      type="submit"
+    >
+      ایجاد پروژه جدید
+    </button>
+  </div>
+</form>
+
+<div class="p-2 m-2">
+
+  <app-calendar-template>
+    
+  </app-calendar-template>
+</div>
+</div>
+
+
 
   <div
     *ngIf="showModal"

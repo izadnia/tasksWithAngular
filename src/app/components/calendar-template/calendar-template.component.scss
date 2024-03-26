@@ -1,0 +1,44 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 0;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  width: 8rem;
+  height: 4rem;
+  .dayData {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .daynumber {
+      margin: 0.5rem;
+      width: 2.5rem;
+      border: 1px solid #ddd;
+      padding: 0.3rem 0.2rem;
+      border-radius: 0.8rem;
+      background-color: aliceblue;
+    }
+    .dayevents {
+      padding:  1rem 0;
+    }
+  }
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+th {
+  background-color: #4caf50;
+  color: white;
+}
+td:hover {
+  background-color: antiquewhite;
+}

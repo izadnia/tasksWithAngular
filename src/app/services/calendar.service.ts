@@ -53,8 +53,7 @@ export class CalendarService {
             +data[index].finishDate.slice(8, 10) == +dayString)
         ) {
           event.push(data[index]);
-        } else {
-        }
+        } 
       }
       currentWeek.push({ dayString, events: event });
 
