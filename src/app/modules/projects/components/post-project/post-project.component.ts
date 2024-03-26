@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { format, monthsToYears } from 'date-fns';
 import { Projects } from '../../../../models/Projects';
 import { ProjectTestService } from '../../../../services/project-test.service';
 
@@ -69,14 +70,17 @@ routToProject(){
   onSubmit() {
     this.flagCheck();
     if (this.readyToSend) {
+      
       this.projectService.setNewProject(this.item).subscribe((Response) => {
         if (Response.title == this.item.title) {
           this.toggleModal();
-          
+          this.item = new Projects();
         } else alert('یه مشکلی پیش اومد');
       });
+    
     } else {
       this.toggleModal();
     }
+    this.readyToSend = false
   }
 }

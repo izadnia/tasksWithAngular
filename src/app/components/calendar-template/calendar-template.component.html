@@ -1,0 +1,80 @@
+<!-- {{projectsList[0]| json}} -->
+<!-- <div class="mx-auto absolute bg-white border rounded-xl">
+  <ng-container *ngIf="modalIsOpen">
+    <p
+      (click)="closeModal()"
+      class="cursor-pointer m-2 p-2 rounded border w-16 mx-auto"
+    >
+      بستن
+    </p>
+    <div class="m-2 p-2 flex justify-between" *ngFor="let item of modalFeed">
+      <div>
+        <p class="m-2 p-2 text-xl">عنوان :{{ item.title }}</p>
+        <button
+          class="p-2 mr-20 text-emerald-600 border mx-auto border-emerald-600 rounded-md hover:bg-emerald-600 hover:text-white"
+          [routerLink]="['/tasks/task/', item.taskKey]"
+          routerLinkActive="router-link-active"
+        >
+          جزئیات
+        </button>
+      </div>
+      <div>
+        <p class="m-2 p-2 text-xl">تاریخ شروع : {{ item.initDate }}</p>
+        <p class="m-2 p-2 text-xl">تاریخ پایان : {{ item.finishDate }}</p>
+      </div>
+    </div>
+  </ng-container>
+</div> -->
+<div>
+  <p class="text-3xl p-4">{{ monthName }} {{ year }}</p>
+</div>
+<div class="">
+  <button
+    class="border py-2 my-4 px-4 rounded rounded-r-full bg-cyan-700 text-white hover:bg-cyan-800"
+    (click)="prevmonth()"
+  >
+    ماه قبل
+  </button>
+  <button
+    class="border py-2 my-4 px-4 rounded bg-fuchsia-700 text-white hover:bg-fuchsia-800"
+    (click)="today()"
+  >
+    این ماه
+  </button>
+  <button
+    class="border py-2 my-4 px-4 rounded rounded-l-full bg-cyan-700 text-white hover:bg-cyan-800"
+    (click)="nextmonth()"
+  >
+    ماه بعد
+  </button>
+</div>
+<div class="flex justify-between">
+  <div class="">
+    <table>
+      <tr>
+        <th>شنبه</th>
+        <th>یکشنبه</th>
+        <th>دوشنبه</th>
+        <th>سه شنبه</th>
+        <th>چهارشنبه</th>
+        <th>پنج شنبه</th>
+        <th>جمعه</th>
+      </tr>
+      <tr *ngFor="let week of calendar; let i = index">
+        <ng-container *ngFor="let day of week">
+          <td (mouseenter)="toggleModal(day)">
+            <!-- <span
+              [ngClass]="{ hidden: day.events.length == 0 }"
+              class="inline-flex items-center rounded-full bg-red-800 px-2 py-1 text-xs font-bold text-white ring-1 ring-inset"
+              >{{ day.events.length }}</span
+            > -->
+            <div class="dayData">
+              <p class="daynumber" [hidden]="!day.dayString">{{ day.dayString }}</p>
+              <p [ngClass]="{'dayevents': day.events.length > 0}" class="dayevents">{{ day.events.length > 0 ? day.events[0].title : null  }}</p>
+            </div>
+          </td>
+        </ng-container>
+      </tr>
+    </table>
+  </div>
+</div>

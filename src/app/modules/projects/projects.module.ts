@@ -9,6 +9,8 @@ import { ListsHandlersComponent } from './components/lists-handlers/lists-handle
 import { PersianDatePipe } from './pipes/persian-date.pipe';
 import { EditComponent } from './components/edit/edit.component';
 import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
+import { CalendarTemplateComponent } from '../../components/calendar-template/calendar-template.component';
+ 
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
     ListsHandlersComponent,
     PersianDatePipe,
     EditComponent,
+    CalendarTemplateComponent
   ],
   imports: [
     CommonModule,
@@ -25,6 +28,7 @@ import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
     FormsModule,
     ReactiveFormsModule,
     NgPersianDatepickerModule,
+    
   ],
 })
 export class ProjectsModule {}
