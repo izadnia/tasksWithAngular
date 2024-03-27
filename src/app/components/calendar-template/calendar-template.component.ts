@@ -13,7 +13,8 @@ export class CalendarTemplateComponent {
     private calendarService: CalendarService,
     private projectService: ProjectTestService
   ) {}
-  @Output() Updated = new EventEmitter<boolean>();
+  @Output() dateFirst = new EventEmitter<string>();
+  @Output() dateSecond = new EventEmitter<string>();
   projectsList: Projects[] = [];
   calendar: any[][] = [];
   year: number = 0;
@@ -42,6 +43,8 @@ export class CalendarTemplateComponent {
     this.calendarService.dateHandler(data, i, j);
     this.jalaliCal();
 
+    this.dateFirst.emit( this.calendarService.dateFirst);
+    this.dateSecond.emit(this.calendarService.dateSecond);
   }
   toggleModal(data: any) {
     if (data.events.length > 0) {

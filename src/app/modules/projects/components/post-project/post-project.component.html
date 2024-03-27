@@ -1,109 +1,66 @@
 <div>
-  
-  <div>
-  </div><h1 class=" text-3xl">پروژه ی جدید</h1>
-<div class="flex ">
-  <!-- <form #myForm (ngSubmit)="onSubmit()" class="bg-white max-w-72 shadow-md rounded px-8 pt-6 pb-8 mb-4">
-  <div class="mb-4">
-    <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
-      عنوان پروژه
-    </label>
-    <input
-     [ngClass]="{'border-red-700 border': !titleCheckFlag}"
-      [(ngModel)]="item.title"
-      name="title"
-      id="title"
-      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-      type="text"
-    />
-
-  </div>
-  <div class="mb-4">
-    <label class="block text-gray-700 text-sm font-bold mb-2" for="initDate">
-      تاریخ شروع
-    </label>
-    <ng-persian-datepicker [dateInitValue]="false">
-      <input
-        type="text"
-        [ngClass]="{'border-red-700 border': !initDateCheckFlag}"
-        class="shadow cursor-pointer appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        [formControl]="initDateValue"
-        [(ngModel)]="item.initDate"
-        name="initDate"
-        id="initDate"
-        autocomplete="off"
-        placeholder="تاریخ شروع"
-        
-      />
-    </ng-persian-datepicker>
-  </div>
-
-  <div class="mb-4">
-    <label
-      class="block text-gray-700 text-sm font-bold mb-2"
-      for="finishDate"
-    >
-      تاریخ پایان
-    </label>
-    <ng-persian-datepicker [dateInitValue]="false">
-      <input
-        type="text"
-        [ngClass]="{'border-red-700 border': !finishDateCheckFlag}"
-        class="shadow cursor-pointer appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        [formControl]="finishDateValue"
-        [(ngModel)]="item.finishDate"
-        name="finishDate"
-        id="finishDate"
-        autocomplete="off"
-        placeholder="تاریخ پایان"
-        (ngModalChange)="flagCheck()"
-        
-        
-
-      />
-    </ng-persian-datepicker>
-  </div>
-
-  <div class="flex items-center justify-between">
-    <button
-      [hidden]=""
-      class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-      type="submit"
-    >
-      ایجاد پروژه جدید
-    </button>
-  </div>
-</form> -->
-
-<div class="">
-  <div>
-    {{dateFirst}}
-  </div>
-  <app-calendar-template>
+  <div></div>
+  <h1 class="text-3xl">پروژه ی جدید</h1>
+  <div class="flex max-md:flex-col">
+      <app-calendar-template
+        (dateFirst)="handleFirstDate($event)"
+        (dateSecond)="handleSecondDate($event)"
+      >
+      </app-calendar-template>
+    <div class="flex flex-col m-2 p-2  md:mt-16">
+      <p class="text-lg m-1 p-1">{{ dateFirst ? "تاریخ انتخابی اول : " + dateFirst : null }}</p>
+      <p class="text-lg m-1 p-1">{{ dateSecond ? "تاریخ انتخابی دوم : " + dateSecond : null }}</p>
+      <ng-container *ngIf="dateFirst && dateSecond;">
+      <div class="m-1 p-2 h-20">
+        <input
+          [ngClass]="{'border-red-700 border': !titleCheckFlag}"
+          [(ngModel)]="item.title"
+          name="title"
+          id="title"
+          class="shadow appearance-none border rounded w-full h-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          type="text"
+          placeholder="عنوان پروژه"
+        />
+    <div class="my-2 py-2 flex items-center justify-between">
+        <button
+        (click)="onSubmit()"
+          [hidden]=""
+          class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit"
+        >
+          ایجاد پروژه جدید
+        </button>
+      </div>
+      </div>
+      
+    </ng-container>
+    </div>
     
-  </app-calendar-template>
-</div>
-</div>
 
+  </div>
 
-
-
-  <div
-    *ngIf="showModal"
-    class="modal-overlay"
-    
-  >
+  <div *ngIf="showModal" class="modal-overlay">
     <div class="relative w-auto my-2 mx-auto p-4 max-w-sm">
       <!--content-->
       <div
-        class="border-0  rounded-lg shadow-lg relative flex flex-col w-full bg-gray-50 outline-none focus:outline-none"
+        class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-gray-50 outline-none focus:outline-none"
       >
         <!--header-->
         <div
           class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t"
         >
-          <h3 [hidden]="readyToSend" class="text-5xl text-red-800 font-semibold">خطا!</h3>
-          <h3 [hidden]="!readyToSend" class="text-5xl text-green-800 font-semibold">تبریک!</h3>
+          <h3
+            [hidden]="readyToSend"
+            class="text-5xl text-red-800 font-semibold"
+          >
+            خطا!
+          </h3>
+          <h3
+            [hidden]="!readyToSend"
+            class="text-5xl text-green-800 font-semibold"
+          >
+            تبریک!
+          </h3>
           <button
             class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
             (click)="toggleModal()"
@@ -126,7 +83,9 @@
             class="my-4 text-blueGray-500 text-lg text-red-700 leading-relaxed"
           >
             {{
-              !initDateCheckFlag ? "* وارد کردن زمان شروع پروژه الزامی است" : null
+              !initDateCheckFlag
+                ? "* وارد کردن زمان شروع پروژه الزامی است"
+                : null
             }}
           </p>
           <p
@@ -141,48 +100,36 @@
           <p
             class="my-4 text-blueGray-500 text-lg text-green-600 leading-relaxed"
           >
-            {{
-              readyToSend
-                ? "پروژه با موفقیت ساخته شد"
-                : null
-            }}
+            {{ readyToSend ? "پروژه با موفقیت ساخته شد" : null }}
           </p>
         </div>
         <!--footer-->
         <div
           class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b"
         >
-        
           <button
             class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
             type="button"
             (click)="toggleModal()"
           >
-          متوجه شدم
+            متوجه شدم
           </button>
 
           <button
-         [hidden]="!readyToSend"
-          class="bg-sky-500   text-white active:bg-sky-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-          type="button"
-          (click)="routToProject()"
-        >
-       پروژه ها 
-        </button>
-
-
-          
-
-
-
-
+            [hidden]="!readyToSend"
+            class="bg-sky-500 text-white active:bg-sky-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            type="button"
+            (click)="routToProject()"
+          >
+            پروژه ها
+          </button>
         </div>
       </div>
     </div>
   </div>
 
   <button
-    class="m-2 p-2 text-cyan-700 border border-cyan-700 rounded-md hover:bg-cyan-700 hover:text-white"
+    class="my-6 p-2 text-cyan-700 border border-cyan-700 rounded-md hover:bg-cyan-700 hover:text-white"
     [routerLink]="['/projects']"
     routerLinkActive="router-link-active"
   >
