@@ -35,6 +35,7 @@ export class CalendarComponent implements OnInit {
       .getProjectsList()
       .subscribe((m) => (this.projectsList = m));
     this.jalaliCal();
+
   }
   toggleModal(data: any) {
     if (data.length > 0) {
