@@ -1,0 +1,62 @@
+<div></div>
+<div class="flex">
+  <button
+    class="border py-2 my-4 px-4 rounded rounded-r-full bg-cyan-700 text-white hover:bg-cyan-800"
+    (click)="prevmonth()"
+  >
+    ماه قبل
+  </button>
+  <button
+    class="border py-2 my-4 px-4 rounded bg-fuchsia-700 text-white hover:bg-fuchsia-800"
+    (click)="today()"
+  >
+    این ماه
+  </button>
+  <button
+    class="border py-2 my-4 px-4 rounded rounded-l-full bg-cyan-700 text-white hover:bg-cyan-800"
+    (click)="nextmonth()"
+  >
+    ماه بعد
+  </button>
+  <p class="text-3xl p-4">{{ monthName }} {{ year }}</p>
+</div>
+<div class="flex justify-between">
+  <div class="">
+    <table>
+      <tr>
+        <th>شنبه</th>
+        <th>یکشنبه</th>
+        <th>دوشنبه</th>
+        <th>سه شنبه</th>
+        <th>چهارشنبه</th>
+        <th>پنج شنبه</th>
+        <th>جمعه</th>
+      </tr>
+      <tr *ngFor="let week of calendar; let i = index">
+        <ng-container *ngFor="let day of week; let j = index">
+          <td
+            (mouseenter)="toggleModal(day)"
+            (click)="dateHandler(day, i, j)"
+            [ngClass]="{ 'bg-amber-400': day.firstDate || day.secondDate }"
+          >
+            <div class="dayData">
+              <p class="daynumber" [hidden]="!day.dayString">
+                {{ day.dayString }}
+              </p>
+              <p
+                [ngClass]="{ dayevents: day.events.length > 0 }"
+                class="dayevents"
+              >
+                {{ day.events.length > 0 ? day.events[0].title : null }}
+              </p>
+              <p class="dayevents">
+                {{ day.firstDate ? "تاریخ انتخابی اول" : null }}
+                {{ day.secondDate ? "تاریخ انتخابی دوم" : null }}
+              </p>
+            </div>
+          </td>
+        </ng-container>
+      </tr>
+    </table>
+  </div>
+</div>

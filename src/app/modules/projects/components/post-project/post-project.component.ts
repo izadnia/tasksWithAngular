@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { format, monthsToYears } from 'date-fns';
 import { Projects } from '../../../../models/Projects';
+import { CalendarService } from '../../../../services/calendar.service';
 import { ProjectTestService } from '../../../../services/project-test.service';
 
 @Component({
@@ -11,14 +13,15 @@ import { ProjectTestService } from '../../../../services/project-test.service';
 })
 export class PostProjectComponent {
   constructor(
+    private calendarService : CalendarService,
     private projectService: ProjectTestService,
     private router: Router
   ) {}
+  dateFirst = ''
+  dateSecond = ''
   ngOnInit(): void {
-
   }
   item: Projects = new Projects();
-
   initDateValue = new FormControl();
   finishDateValue = new FormControl();
   productModel: any;
@@ -27,8 +30,14 @@ export class PostProjectComponent {
   finishDateCheckFlag: boolean = true;
   readyToSend = false;
   showModal = false;
-  
-
+  handleFirstDate(date:any){
+    this.dateFirst = date;
+    this.item.initDate = this.dateFirst
+  }
+  handleSecondDate(date:any){
+    this.dateSecond = date;
+    this.item.finishDate = this.dateSecond
+  }
 
   toggleModal() {
     this.showModal = !this.showModal;
@@ -69,12 +78,14 @@ routToProject(){
   onSubmit() {
     this.flagCheck();
     if (this.readyToSend) {
+      
       this.projectService.setNewProject(this.item).subscribe((Response) => {
         if (Response.title == this.item.title) {
           this.toggleModal();
           this.item = new Projects();
         } else alert('یه مشکلی پیش اومد');
       });
+    
     } else {
       this.toggleModal();
     }

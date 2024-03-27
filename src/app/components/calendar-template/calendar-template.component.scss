@@ -1,0 +1,57 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+    border: 1px solid #ddd;
+    padding: 0;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    width: 6rem;
+    height: 3rem;
+}
+td {
+  border: 1px solid #ddd;
+  padding: 0;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  width: 6rem;
+  height: 6rem;
+  .dayData {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .daynumber {
+      font-size: 0.75rem;
+      margin: 0.5rem;
+      width: 2.5rem;
+      border: 1px solid #ddd;
+      padding: 0.1rem 0rem;
+      border-radius: 0.2rem;
+      background-color: aliceblue;
+    }
+    .dayevents {
+      font-size: 0.75rem;
+      padding:  0rem 0;
+    }
+  }
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+th {
+  background-color: #4caf50;
+  color: white;
+}
+td:hover {
+  background-color: antiquewhite;
+}
+td .selectedTD{
+  background-color: #4caf50;
+}

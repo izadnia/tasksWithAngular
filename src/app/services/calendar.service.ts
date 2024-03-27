@@ -23,11 +23,46 @@ export class CalendarService {
     'بهمن',
     'اسفند',
   ];
+  dateFirst = '';
+  dateSecond = '';
   jalaliDate = moment(); // Creating a Jalali-Moment object
   month = this.jalaliDate.jMonth();
   year = this.jalaliDate.jYear();
+  dateHandler(data: any, i: number, j: number) {
+    let temp = this.year + '/' + (this.month + 1) + '/' + data.dayString;
+    if (
+      this.dateFirst == temp ||
+      (this.dateFirst == temp && this.dateSecond == '' && this.dateSecond)
+    ) {
+      this.dateFirst = this.dateSecond;
+      this.dateSecond = '';
+      this.calendar[i][j].firstDate = false;
+    } else if (
+      this.dateFirst == temp ||
+      (this.dateFirst == temp && this.dateSecond == '')
+    ) {
+      this.dateFirst = '';
+      this.calendar[i][j].firstDate = false;
+    } else if (
+      this.dateSecond == temp ||
+      (this.dateSecond == temp && this.dateSecond == '')
+    ) {
+      this.dateSecond = '';
+      this.calendar[i][j].secondDate = false;
+    } else if (!this.dateFirst) {
+      this.dateFirst = temp;
+      this.calendar[i][j].firstDate = true;
+    } else if (!this.dateSecond) {
+      this.dateSecond = temp;
+      this.calendar[i][j].secondDate = true;
+    }
 
+    // console.log(this.calendar);
+    // console.log('1 :', this.dateFirst, '2 : ', this.dateSecond);
+  }
   jalaliCal(data: Projects[]) {
+    console.log('1 :', this.dateFirst, '2 : ', this.dateSecond);
+    console.log(this.dateFirst.split('/')[1]);
     const startDate = moment.jDaysInMonth(this.year, this.month); // Getting the total number of days in the month
 
     // Start from the first day of the month
@@ -37,7 +72,12 @@ export class CalendarService {
       .jDate(1);
 
     let weeks: { dayString: string; events: Projects[] }[][] = [];
-    let currentWeek: { dayString: string; events: Projects[] }[] = [];
+    let currentWeek: {
+      dayString: string;
+      events: Projects[];
+      firstDate: boolean;
+      secondDate: boolean;
+    }[] = [];
 
     // Generate weeks until the end of the month
     while (currentDate.jMonth() === this.month) {
@@ -53,10 +93,38 @@ export class CalendarService {
             +data[index].finishDate.slice(8, 10) == +dayString)
         ) {
           event.push(data[index]);
-        } else {
         }
       }
-      currentWeek.push({ dayString, events: event });
+      if (
+        +this.dateFirst.split('/')[0] == this.year &&
+        +this.dateFirst.split('/')[1] == this.month + 1 &&
+        +this.dateFirst.split('/')[2] == +dayString
+      ) {
+        currentWeek.push({
+          dayString,
+          events: event,
+          firstDate: true,
+          secondDate: false,
+        });
+      } else if (
+        +this.dateSecond.split('/')[0] == this.year &&
+        +this.dateSecond.split('/')[1] == this.month + 1 &&
+        +this.dateSecond.split('/')[2] == +dayString
+      ) {
+        currentWeek.push({
+          dayString,
+          events: event,
+          firstDate: false,
+          secondDate: true,
+        });
+      } else {
+        currentWeek.push({
+          dayString,
+          events: event,
+          firstDate: false,
+          secondDate: false,
+        });
+      }
 
       // Add day with empty events array
       if (currentDate.jDay() === 6 || currentWeek.length === 7) {
@@ -65,14 +133,24 @@ export class CalendarService {
         // Fill first week with "-1" if less than 7 days
         if (currentWeek.length < 7) {
           for (let i = currentWeek.length; i < 7; i++) {
-            currentWeek.unshift({ dayString: '', events: [] });
+            currentWeek.unshift({
+              dayString: '',
+              events: [],
+              firstDate: false,
+              secondDate: false,
+            });
           }
         }
 
         // Fill last week with "-1" if less than 7 days
         if (weeks.length === 0 && currentWeek.length < 7) {
           for (let i = currentWeek.length; i < 7; i++) {
-            currentWeek.push({ dayString: '-1', events: [] });
+            currentWeek.push({
+              dayString: '-1',
+              events: [],
+              firstDate: false,
+              secondDate: false,
+            });
           }
         }
 
