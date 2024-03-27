@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Projects } from '../../models/Projects';
 import { CalendarService } from '../../services/calendar.service';
 import { ProjectTestService } from '../../services/project-test.service';
@@ -13,14 +13,12 @@ export class CalendarTemplateComponent {
     private calendarService: CalendarService,
     private projectService: ProjectTestService
   ) {}
+  @Output() Updated = new EventEmitter<boolean>();
   projectsList: Projects[] = [];
   calendar: any[][] = [];
   year: number = 0;
   monthName: string = '';
-  monthNum = 0
   modalIsOpen: boolean = false;
-  dateFirst = ''
-  dateSecond =''
   modalFeed: Projects[] = [
     {
       id: 0,
@@ -37,24 +35,13 @@ export class CalendarTemplateComponent {
       .getProjectsList()
       .subscribe((m) => (this.projectsList = m));
     this.jalaliCal();
+
   }
-  dateHandler(data:any,i:number,j:number){
-    let temp = this.year+'/'+this.monthNum+'/'+ data.dayString
-    if ((this.dateFirst == temp)||(this.dateFirst == temp && this.dateSecond == '')){
-      this.dateFirst = ''
-      delete this.calendar[i][j].firstDate
-    }else if ((this.dateSecond == temp)||(this.dateSecond == temp && this.dateSecond == '')){
-      this.dateSecond = ''
-      delete this.calendar[i][j].secondDate 
-    }else if(!this.dateFirst){
-      this.dateFirst = temp
-      this.calendar[i][j].firstDate = true
-    }else if (!this.dateSecond){
-      this.dateSecond = temp
-      this.calendar[i][j].secondDate = true
-    }
-    console.log(this.calendar)
-    console.log('1 :', this.dateFirst , '2 : ', this.dateSecond)
+  dateHandler(data: any, i: number, j: number) {
+    
+    this.calendarService.dateHandler(data, i, j);
+    this.jalaliCal();
+
   }
   toggleModal(data: any) {
     if (data.events.length > 0) {
@@ -68,12 +55,10 @@ export class CalendarTemplateComponent {
 
   jalaliCal() {
     this.calendarService.jalaliCal(this.projectsList);
-    this.monthNum = this.calendarService.month + 1
     this.calendar = this.calendarService.calendar;
     this.year = this.calendarService.year;
     this.monthName = this.calendarService.monthName;
   }
-  monthTranslater() {}
 
   getEmptyCells(count: number): any[] {
     return Array(count).fill(null);
@@ -89,5 +74,9 @@ export class CalendarTemplateComponent {
   prevmonth() {
     this.calendarService.prevmonth(this.projectsList);
     this.jalaliCal();
+  }
+  ngOnDestroy(): void {
+    this.calendarService.dateFirst = '';
+    this.calendarService.dateSecond = '';
   }
 }

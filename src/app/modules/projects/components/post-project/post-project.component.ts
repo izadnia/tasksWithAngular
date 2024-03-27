@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { format, monthsToYears } from 'date-fns';
 import { Projects } from '../../../../models/Projects';
+import { CalendarService } from '../../../../services/calendar.service';
 import { ProjectTestService } from '../../../../services/project-test.service';
 
 @Component({
@@ -12,11 +13,15 @@ import { ProjectTestService } from '../../../../services/project-test.service';
 })
 export class PostProjectComponent {
   constructor(
+    private calendarService : CalendarService,
     private projectService: ProjectTestService,
     private router: Router
   ) {}
+  dateFirst = ''
+  dateSecond = ''
   ngOnInit(): void {
-
+    this.dateFirst = this.calendarService.dateFirst
+    this.dateSecond = this.calendarService.dateSecond
   }
   item: Projects = new Projects();
 
