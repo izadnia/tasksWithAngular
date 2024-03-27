@@ -85,12 +85,12 @@ export class CalendarService {
       let event: any[] = [];
       for (let index = 0; index < data.length; index++) {
         if (
-          (+data[index].initDate.slice(0, 4) == this.year &&
-            +data[index].initDate.slice(5, 7) == this.month + 1 &&
-            +data[index].initDate.slice(8, 10) == +dayString) ||
-          (+data[index].finishDate.slice(0, 4) == this.year &&
-            +data[index].finishDate.slice(5, 7) == this.month + 1 &&
-            +data[index].finishDate.slice(8, 10) == +dayString)
+          (+data[index].initDate.split('/')[0]== this.year &&
+            +data[index].initDate.split('/')[1]== this.month + 1 &&
+            +data[index].initDate.split('/')[2] == +dayString) ||
+          (+data[index].finishDate.split('/')[0]== this.year &&
+            +data[index].finishDate.split('/')[1]== this.month + 1 &&
+            +data[index].finishDate.split('/')[2] == +dayString)
         ) {
           event.push(data[index]);
         }
