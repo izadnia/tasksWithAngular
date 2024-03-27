@@ -20,11 +20,8 @@ export class PostProjectComponent {
   dateFirst = ''
   dateSecond = ''
   ngOnInit(): void {
-    this.dateFirst = this.calendarService.dateFirst
-    this.dateSecond = this.calendarService.dateSecond
   }
   item: Projects = new Projects();
-
   initDateValue = new FormControl();
   finishDateValue = new FormControl();
   productModel: any;
@@ -33,8 +30,14 @@ export class PostProjectComponent {
   finishDateCheckFlag: boolean = true;
   readyToSend = false;
   showModal = false;
-  
-
+  handleFirstDate(date:any){
+    this.dateFirst = date;
+    this.item.initDate = this.dateFirst
+  }
+  handleSecondDate(date:any){
+    this.dateSecond = date;
+    this.item.finishDate = this.dateSecond
+  }
 
   toggleModal() {
     this.showModal = !this.showModal;
